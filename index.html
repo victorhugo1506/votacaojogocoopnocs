@@ -34,26 +34,33 @@
             margin: 0 auto;
         }
 
-        /* Design Base da Carta */
+        /* -------------------------------------
+           DESIGN DA CARTA (ESTILO FIFA)
+           ------------------------------------- */
         .cs-card {
             width: 320px;
-            height: 480px;
+            height: 450px;
+            /* Altura ajustada para o formato FIFA */
             background-color: transparent;
-            background-size: 100% 100%;
+            background-size: cover;
             background-position: center;
             position: relative;
+            /* Essencial para alinhar os elementos dentro dela */
+            border-radius: 25px;
+            /* Corta as pontas pretas do template JPG */
             overflow: hidden;
-            color: #fff;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
-            /* Sombra no texto para leitura nos fundos claros */
+            color: #2b2214;
+            /* Cor escura idêntica à das cartas reais */
+            font-family: 'Teko', sans-serif;
             transition: transform 0.2s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
         }
 
         .cs-card:hover {
             transform: translateY(-10px);
         }
 
-        /* Classes Dinâmicas de Categoria */
+        /* Classes de Fundo */
         .ouro {
             background-image: url('ouro.jpg');
         }
@@ -66,106 +73,105 @@
             background-image: url('bronze.jpg');
         }
 
-        .card-header {
+        /* 1. Coluna Superior Esquerda (Nota, Posição e Bandeira) */
+        .card-top-left {
+            position: absolute;
+            top: 55px;
+            left: 45px;
             display: flex;
-            justify-content: space-between;
-            padding: 20px 20px 0 20px;
-            position: relative;
+            flex-direction: column;
+            align-items: center;
             z-index: 2;
         }
 
-        .header-left {
-            text-align: center;
-        }
-
         .overall {
-            font-family: 'Teko', sans-serif;
-            font-size: 55px;
+            font-size: 60px;
             font-weight: 600;
             line-height: 0.8;
-            color: #fff;
-            /* Deixei branco para combinar melhor com os 3 templates */
         }
 
         .position {
-            font-size: 16px;
-            font-weight: bold;
+            font-size: 20px;
+            font-weight: 600;
             margin-top: 5px;
-            color: #eee;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
         }
 
-        .header-right {
-            text-align: right;
-        }
-
-        /* Estilo da Bandeira */
         .flag {
-            width: 35px;
-            border-radius: 3px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-            margin-top: 5px;
+            width: 32px;
+            height: 20px;
+            object-fit: cover;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
+        /* 2. Foto do Jogador */
         .card-image {
-            width: 100%;
-            height: 220px;
+            position: absolute;
+            top: 40px;
+            right: 15px;
+            width: 200px;
+            height: 190px;
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            margin-top: -30px;
-            position: relative;
             z-index: 1;
         }
 
         .card-image img {
             max-height: 100%;
-            max-width: 90%;
+            max-width: 100%;
             object-fit: contain;
         }
 
+        /* 3. Nome do Jogador (Acima da linha divisória) */
         .card-name {
-            font-family: 'Teko', sans-serif;
-            font-size: 32px;
-            text-transform: uppercase;
+            position: absolute;
+            top: 235px;
+            /* Altura exata para bater com a linha do template */
+            width: 100%;
             text-align: center;
-            letter-spacing: 3px;
-            margin: 5px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding-bottom: 5px;
-            margin-left: 20px;
-            margin-right: 20px;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
         }
 
+        /* 4. Atributos (Divididos pela linha vertical) */
         .card-stats {
+            position: absolute;
+            top: 290px;
+            /* Altura exata para bater com a linha vertical do template */
+            width: 80%;
+            left: 10%;
             display: flex;
-            justify-content: space-around;
-            padding: 10px 20px;
+            justify-content: center;
+            gap: 40px;
+            /* Espaçamento entre a coluna da esquerda e direita */
         }
 
         .stat-column {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 2px;
         }
 
         .stat-row {
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 18px;
-            font-family: 'Teko', sans-serif;
+            font-size: 22px;
         }
 
         .stat-value {
             font-weight: 600;
-            font-size: 24px;
-            width: 30px;
+            width: 25px;
             text-align: right;
         }
 
         .stat-label {
             font-weight: normal;
-            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -178,77 +184,25 @@
 
     <script>
         const jogadores = [
-            {
-                nome: "Negaolol",
-                posicao: "Entry",
-                foto: "https://i.imgur.com/r84NksO.png",
-                stats: { mir: 88, mov: 85, noc: 92, uti: 89, imp: 86, clu: 90 }
-            },
-            {
-                nome: "Alisson To Certo",
-                posicao: "AWP",
-                foto: "https://i.imgur.com/r84NksO.png",
-                stats: { mir: 90, mov: 82, noc: 85, uti: 80, imp: 91, clu: 87 }
-            },
-            {
-                nome: "Kaue Superidol",
-                posicao: "Entry",
-                foto: "https://i.imgur.com/r84NksO.png",
-                stats: { mir: 92, mov: 88, noc: 80, uti: 75, imp: 90, clu: 78 }
-            },
-            {
-                nome: "Mathias Flinstons",
-                posicao: "SUP",
-                foto: "https://i.imgur.com/r84NksO.png",
-                stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 }
-            },
-            {
-                nome: "Osvaldo",
-                posicao: "SUP",
-                foto: "https://i.imgur.com/r84NksO.png",
-                stats: { mir: 55, mov: 50, noc: 52, uti: 58, imp: 50, clu: 55 }
-            },
-            {
-                nome: "Indianolol",
-                posicao: "SUP",
-                foto: "https://i.imgur.com/r84NksO.png",
-                stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 }
-            },
-            {
-                nome: "Modafoquin Bilas",
-                posicao: "SUP",
-                foto: "https://i.imgur.com/r84NksO.png",
-                stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 }
-            },
-            {
-                nome: "GGelo",
-                posicao: "SUP",
-                foto: "https://i.imgur.com/r84NksO.png",
-                stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 }
-            },
-            {
-                nome: "Wandher Omisso",
-                posicao: "SUP",
-                foto: "https://i.imgur.com/r84NksO.png",
-                stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 }
-            },
-            {
-                nome: "Psicologo Vitor",
-                posicao: "SUP",
-                foto: "https://i.imgur.com/r84NksO.png",
-                stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 }
-            }
+            { nome: "Negaolol", posicao: "ENT", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 88, mov: 85, noc: 92, uti: 89, imp: 86, clu: 90 } },
+            { nome: "Alisson", posicao: "AWP", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 90, mov: 82, noc: 85, uti: 80, imp: 91, clu: 87 } },
+            { nome: "Kaue", posicao: "ENT", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 92, mov: 88, noc: 80, uti: 75, imp: 90, clu: 78 } },
+            { nome: "Mathias", posicao: "SUP", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
+            { nome: "Osvaldo", posicao: "SUP", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 55, mov: 50, noc: 52, uti: 58, imp: 50, clu: 55 } },
+            { nome: "Indianolol", posicao: "SUP", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
+            { nome: "Modafoquin", posicao: "SUP", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
+            { nome: "GGelo", posicao: "SUP", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
+            { nome: "Wandher", posicao: "SUP", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
+            { nome: "Psicologo", posicao: "SUP", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } }
         ];
 
         const container = document.getElementById('time-amigos');
 
         jogadores.forEach(jogador => {
-            // Calcula o Overall
             const st = jogador.stats;
             const soma = st.mir + st.mov + st.noc + st.uti + st.imp + st.clu;
             const overall = Math.round(soma / 6);
 
-            // Algoritmo de classificação da carta
             let categoria = "";
             if (overall >= 80) {
                 categoria = "ouro";
@@ -258,22 +212,21 @@
                 categoria = "bronze";
             }
 
-            // Esqueleto da Carta Final
+            // O HTML agora reflete a nova organização do CSS
             const cartaHTML = `
                 <div class="cs-card ${categoria}">
-                    <div class="card-header">
-                        <div class="header-left">
-                            <div class="overall">${overall}</div>
-                            <div class="position">${jogador.posicao}</div>
-                        </div>
-                        <div class="header-right">
-                            <img class="flag" src="https://flagcdn.com/w40/br.png" alt="Brasil">
-                        </div>
+                    <div class="card-top-left">
+                        <div class="overall">${overall}</div>
+                        <div class="position">${jogador.posicao}</div>
+                        <img class="flag" src="https://flagcdn.com/w40/br.png" alt="Brasil">
                     </div>
+                    
                     <div class="card-image">
                         <img src="${jogador.foto}" alt="Foto de ${jogador.nome}">
                     </div>
+                    
                     <div class="card-name">${jogador.nome}</div>
+                    
                     <div class="card-stats">
                         <div class="stat-column">
                             <div class="stat-row"><span class="stat-value">${st.mir}</span><span class="stat-label">MIR</span></div>
