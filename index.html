@@ -60,29 +60,28 @@
             z-index: 0;
         }
 
-        /* 1. OVERALL: Topo esquerdo */
+/* 1. OVERALL: Desceu e foi pra direita para fugir do corte da carta */
         .card-overall {
             position: absolute;
-            top: 14%;
-            left: 10%;
+            top: 20%;  /* Aumentou para descer */
+            left: 15%; /* Aumentou para afastar da borda */
             width: 20%;
             text-align: center;
-            font-size: 46px;
+            font-size: 44px; /* Levemente ajustado */
             font-weight: 700;
             line-height: 0.8;
-            color: #3b2313;
-            /* Cor mais escura para o novo template */
+            color: #3b2313; 
             z-index: 3;
         }
 
-        /* 2. POSIÇÃO: Abaixo do Overall */
+/* 2. POSIÇÃO: Acompanha a descida do Overall */
         .card-position {
             position: absolute;
-            top: 26%;
-            left: 10%;
+            top: 31%; /* Desceu junto */
+            left: 15%;
             width: 20%;
             text-align: center;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             letter-spacing: 0.5px;
             color: #3b2313;
@@ -113,15 +112,14 @@
             display: block;
         }
 
-        /* 3. NOME: Linha central */
+/* 3. NOME: Subiu bastante para entrar na área visível */
         .card-name {
             position: absolute;
-            top: 64%;
-            /* Subiu para encostar na linha */
+            top: 57%; /* Subiu de 64% para 57% */
             left: 5%;
             right: 5%;
             text-align: center;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
@@ -133,15 +131,14 @@
             line-height: 1.15;
         }
 
-        /* 4. NOVA LINHA DE ATRIBUTOS (HORIZONTAL) */
+/* 4. ATRIBUTOS (HORIZONTAL): Subiram para colar abaixo do nome */
         .card-stats-row {
             position: absolute;
-            top: 73.5%;
-            left: 5%;
-            right: 5%;
+            top: 66%; /* Subiu de 73.5% para 66% */
+            left: 8%;
+            right: 8%;
             display: flex;
-            justify-content: space-around;
-            /* Espalha as 6 notas igualmente */
+            justify-content: space-between; /* Espalha as 6 notas na linha */
             z-index: 3;
         }
 
@@ -149,12 +146,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0px;
+            gap: 2px;
         }
 
         .stat-label {
             font-weight: 600;
-            font-size: 16px;
+            font-size: 13px; /* Reduzido para caber melhor os 6 */
             letter-spacing: 0.5px;
             color: #3b2313;
             line-height: 1;
@@ -162,23 +159,21 @@
 
         .stat-value {
             font-weight: 700;
-            font-size: 20px;
+            font-size: 18px; /* Reduzido levemente */
             color: #3b2313;
-            line-height: 1.2;
+            line-height: 1;
         }
 
-        /* 5. RODAPÉ (Bandeira, FUT Cards, Escudo) */
+/* 5. RODAPÉ (Bandeiras e Escudos): Subiram para a ponta do escudo */
         .card-bottom-icons {
             position: absolute;
-            top: 86.5%;
-            /* Fica no fundão da carta */
+            top: 77%; /* Subiu de 86.5% para 77% para entrar na carta */
             left: 10%;
             right: 10%;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px;
-            /* Espaço entre os ícones */
+            gap: 15px; 
             z-index: 3;
         }
 
