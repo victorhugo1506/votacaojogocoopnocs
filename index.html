@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ranking Votação Jogo Coop - CS2</title>
+    <title>Cartas CS - O Esquadrão</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&display=swap');
 
@@ -28,7 +28,17 @@
             color: #f7d571;
         }
 
-        /* Data de Atualização Manual */
+        h2 {
+            text-align: center;
+            font-family: 'Teko', sans-serif;
+            font-size: 40px;
+            letter-spacing: 2px;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            color: #f7d571;
+            text-transform: uppercase;
+        }
+
         .update-date {
             text-align: center;
             font-family: 'Teko', sans-serif;
@@ -71,7 +81,6 @@
             z-index: 0;
         }
 
-        /* 1. OVERALL */
         .card-overall {
             position: absolute;
             top: 20%;
@@ -85,7 +94,6 @@
             z-index: 3;
         }
 
-        /* 2. POSIÇÃO */
         .card-position {
             position: absolute;
             top: 31%;
@@ -100,7 +108,6 @@
             line-height: 1;
         }
 
-        /* FOTO DO JOGADOR */
         .card-image {
             position: absolute;
             top: 12%;
@@ -122,7 +129,6 @@
             display: block;
         }
 
-        /* 3. NOME */
         .card-name {
             position: absolute;
             top: 57%;
@@ -141,7 +147,6 @@
             line-height: 1.15;
         }
 
-        /* 4. ATRIBUTOS (HORIZONTAL) */
         .card-stats-row {
             position: absolute;
             top: 66%;
@@ -174,51 +179,49 @@
             line-height: 1;
         }
 
-/* 5. RODAPÉ (Bandeiras e Escudos) */
         .card-bottom-icons {
             position: absolute;
-            top: 77%; 
+            top: 77%;
             left: 10%;
             right: 10%;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px; 
+            gap: 15px;
             z-index: 3;
         }
 
-        /* Trava a altura de todas as imagens em 18px (altura da bandeira) */
         .card-bottom-icons img {
-            height: 18px; 
+            height: 18px;
             width: auto;
             object-fit: contain;
         }
 
-        .flag-icon { 
-            width: 26px; 
-            object-fit: cover; 
-            border-radius: 2px; 
+        .flag-icon {
+            width: 26px;
+            object-fit: cover;
+            border-radius: 2px;
         }
 
-        .cs-logo, .club-icon { 
-            max-width: 30px; 
-        }
-
-        .cs-logo {
-            width: 45px; /* Tamanho ajustado para caber perfeitamente no meio */
-            height: auto;
-            object-fit: contain;
+        .cs-logo,
+        .club-icon {
+            max-width: 30px;
         }
     </style>
 </head>
 
 <body>
 
-    <h1>Notas dos "Cyber atletas" do Votação Jogo Coop - CS2</h1>
+    <h1>Votação Jogo Coop - CS2</h1>
 
-    <!-- Aviso de atualização manual com a data -->
     <p class="update-date">Última atualização das notas: 13/05/2026</p>
 
+    <!-- O GOAT ISOLADO NO TOPO -->
+    <h2>👑 O Melhor de Todos os Tempos 👑</h2>
+    <div class="cards-container" id="goat-card"></div>
+
+    <!-- O RESTO DO ESQUADRÃO -->
+    <h2>Esquadrão Ativo</h2>
     <div class="cards-container" id="time-amigos"></div>
 
     <script>
@@ -234,50 +237,61 @@
             <path d="M8 140 Q8 88 30 76 Q41 71 50 71 Q59 71 70 76 Q92 88 92 140Z" fill="url(#sg)"/>
         </svg>`;
 
-    const jogadores = [
-        { nome: "Negaolol", posicao: "ENT", foto: null, time: "furia.png", stats: { mir: 63, mov: 55, noc: 58, uti: 60, imp: 56, aura: 54 } },
-        { nome: "Alisson To Certo", posicao: "AWP", foto: null, time: "navi.png", stats: { mir: 72, mov: 73, noc: 74, uti: 71, imp: 74, aura: 82 } },
-        { nome: "Kaue Superidol", posicao: "ENT", foto: null, time: "faze.png", stats: { mir: 58, mov: 62, noc: 50, uti: 55, imp: 52, aura: 56 } },
-        { nome: "Mathias Flinstons", posicao: "SUP", foto: null, time: "vitality.png", stats: { mir: 76, mov: 81, noc: 85, uti: 76, imp: 83, aura: 82 } },
-        { nome: "Stalinosvaldo", posicao: "SUP", foto: null, time: "furia.png", stats: { mir: 89, mov: 86, noc: 92, uti: 79, imp: 94, aura: 93 } },
-        { nome: "Indianolol", posicao: "SUP", foto: null, time: "navi.png", stats: { mir: 91, mov: 82, noc: 88, uti: 75, imp: 92, aura: 89 } },
-        { nome: "Modafoquin Bilas", posicao: "SUP", foto: null, time: "faze.png", stats: { mir: 86, mov: 88, noc: 94, uti: 74, imp: 91, aura: 92 } },
-        { nome: "GGelo", posicao: "SUP", foto: null, time: "vitality.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } },
-        { nome: "Wandher Flashman", posicao: "SUP", foto: null, time: "furia.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } },
-        { nome: "Psicologo Vitor", posicao: "SUP", foto: null, time: "navi.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } }
-    ];
+        // 1. A CARTA RECORDE (O GOAT HISTÓRICO)
+        // Atualize apenas quando alguém bater o recorde atual de Overall
+        const cartaGOAT = {
+            nome: "Stalinosvaldo (Recorde)",
+            posicao: "SUP",
+            foto: null,
+            time: "furia.png",
+            stats: { mir: 89, mov: 86, noc: 92, uti: 79, imp: 94, aura: 93 }
+        };
+
+        // 2. O ESQUADRÃO ATUAL (Notas ativas da semana/mês)
+        const jogadores = [
+            { nome: "Negaolol", posicao: "ENT", foto: "negaolol.png", time: "furia.png", stats: { mir: 63, mov: 55, noc: 58, uti: 60, imp: 56, aura: 54 } },
+            { nome: "Alisson To Certo", posicao: "AWP", foto: null, time: "navi.png", stats: { mir: 72, mov: 73, noc: 74, uti: 71, imp: 74, aura: 82 } },
+            { nome: "Kaue Superidol", posicao: "ENT", foto: null, time: "faze.png", stats: { mir: 58, mov: 62, noc: 50, uti: 55, imp: 52, aura: 56 } },
+            { nome: "Mathias Flinstons", posicao: "SUP", foto: null, time: "vitality.png", stats: { mir: 76, mov: 81, noc: 85, uti: 76, imp: 83, aura: 82 } },
+            { nome: "Stalinosvaldo", posicao: "SUP", foto: "osvaldo.png", time: "furia.png", stats: { mir: 89, mov: 86, noc: 92, uti: 79, imp: 94, aura: 93 } },
+            { nome: "Indianolol", posicao: "SUP", foto: null, time: "navi.png", stats: { mir: 91, mov: 82, noc: 88, uti: 75, imp: 92, aura: 89 } },
+            { nome: "Modafoquin Bilas", posicao: "SUP", foto: null, time: "faze.png", stats: { mir: 86, mov: 88, noc: 94, uti: 74, imp: 91, aura: 92 } },
+            { nome: "GGelo", posicao: "SUP", foto: null, time: "vitality.png", stats: { mir: 62, mov: 58, noc: 59, uti: 59, imp: 56, aura: 65 } },
+            { nome: "Wandher Flashman", posicao: "SUP", foto: null, time: "furia.png", stats: { mir: 80, mov: 84, noc: 85, uti: 68, imp: 85, aura: 70 } },
+            { nome: "Psicologo Vitor", posicao: "SUP", foto: null, time: "navi.png", stats: { mir: 71, mov: 80, noc: 80, uti: 75, imp: 80, aura: 75 } }
+        ];
 
         const bgMap = { ouro: 'ouro.jpg', prata: 'prata.jpg', bronze: 'bronze.jpg' };
-        const container = document.getElementById('time-amigos');
 
+        const containerGoat = document.getElementById('goat-card');
+        const containerTime = document.getElementById('time-amigos');
+
+        // Ordena o esquadrão atual do maior Overall para o menor
         jogadores.sort((a, b) => {
             const overallA = Math.round((a.stats.mir + a.stats.mov + a.stats.noc + a.stats.uti + a.stats.imp + a.stats.aura) / 6);
             const overallB = Math.round((b.stats.mir + b.stats.mov + b.stats.noc + b.stats.uti + b.stats.imp + b.stats.aura) / 6);
             return overallB - overallA;
         });
 
-        jogadores.forEach(jogador => {
+        // Fábrica de Cartas
+        function gerarHTMLCarta(jogador) {
             const st = jogador.stats;
-
             const overall = Math.round((st.mir + st.mov + st.noc + st.uti + st.imp + st.aura) / 6);
             const categoria = overall >= 80 ? "ouro" : overall >= 60 ? "prata" : "bronze";
             const fotoHTML = jogador.foto
                 ? `<img src="${jogador.foto}" alt="${jogador.nome}" onerror="this.style.display='none'">`
                 : SILHUETA;
 
-            container.innerHTML += `
+            return `
                 <div class="cs-card">
                     <img class="card-bg" src="${bgMap[categoria]}" alt="">
 
-                    <!-- TOPO ESQUERDO -->
                     <div class="card-overall">${overall}</div>
                     <div class="card-position">${jogador.posicao}</div>
                     
-                    <!-- FOTO E NOME -->
                     <div class="card-image">${fotoHTML}</div>
                     <div class="card-name">${jogador.nome}</div>
 
-                    <!-- LINHA DE ATRIBUTOS -->
                     <div class="card-stats-row">
                         <div class="stat-item"><span class="stat-label">MIR</span><span class="stat-value">${st.mir}</span></div>
                         <div class="stat-item"><span class="stat-label">MOV</span><span class="stat-value">${st.mov}</span></div>
@@ -287,13 +301,20 @@
                         <div class="stat-item"><span class="stat-label">AURA</span><span class="stat-value">${st.aura}</span></div>
                     </div>
 
-                    <!-- RODAPÉ (Bandeira, CS2, Escudo) -->
                     <div class="card-bottom-icons">
                         <img class="flag-icon" src="https://flagcdn.com/w40/br.png" alt="Brasil">
                         <img class="cs-logo" src="cs2.png" alt="CS2">
                         <img class="club-icon" src="${jogador.time}" alt="Time">
                     </div>
                 </div>`;
+        }
+
+        // Renderiza o GOAT isolado no topo
+        containerGoat.innerHTML = gerarHTMLCarta(cartaGOAT);
+
+        // Renderiza TODOS os patifes, já ordenados
+        jogadores.forEach(jogador => {
+            containerTime.innerHTML += gerarHTMLCarta(jogador);
         });
     </script>
 </body>
