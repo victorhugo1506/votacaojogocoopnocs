@@ -187,26 +187,23 @@
             z-index: 3;
         }
 
-        /* O SEGREDO: Trava a altura de todas as imagens em 18px (altura da bandeira) */
+        /* Trava a altura de todas as imagens em 18px (altura da bandeira) */
         .card-bottom-icons img {
             height: 18px; 
-            width: auto; /* A largura se ajusta sozinha, impedindo que a logo fique esticada/gorda */
+            width: auto;
             object-fit: contain;
         }
 
-        /* A bandeira é a única que precisa de largura fixa e borda arredondada */
         .flag-icon { 
             width: 26px; 
             object-fit: cover; 
             border-radius: 2px; 
         }
 
-        /* Limite extra caso alguma logo seja estupidamente larga */
         .cs-logo, .club-icon { 
             max-width: 30px; 
         }
 
-/* Substitua o antigo .fut-text por este código: */
         .cs-logo {
             width: 45px; /* Tamanho ajustado para caber perfeitamente no meio */
             height: auto;
@@ -219,7 +216,7 @@
 
     <h1>Notas dos "Cyber atletas" do Votação Jogo Coop - CS2</h1>
 
-    <!-- Aviso de atualização manual com a data de hoje -->
+    <!-- Aviso de atualização manual com a data -->
     <p class="update-date">Última atualização das notas: 13/05/2026</p>
 
     <div class="cards-container" id="time-amigos"></div>
@@ -237,7 +234,6 @@
             <path d="M8 140 Q8 88 30 76 Q41 71 50 71 Q59 71 70 76 Q92 88 92 140Z" fill="url(#sg)"/>
         </svg>`;
 
-    // Adicionamos a chave 'time:' com o nome exato do arquivo PNG que você subiu
     const jogadores = [
         { nome: "Negaolol", posicao: "ENT", foto: null, time: "furia.png", stats: { mir: 88, mov: 85, noc: 92, uti: 89, imp: 86, aura: 90 } },
         { nome: "Alisson To Certo", posicao: "AWP", foto: null, time: "navi.png", stats: { mir: 90, mov: 82, noc: 85, uti: 80, imp: 91, aura: 87 } },
@@ -254,9 +250,15 @@
         const bgMap = { ouro: 'ouro.jpg', prata: 'prata.jpg', bronze: 'bronze.jpg' };
         const container = document.getElementById('time-amigos');
 
+        jogadores.sort((a, b) => {
+            const overallA = Math.round((a.stats.mir + a.stats.mov + a.stats.noc + a.stats.uti + a.stats.imp + a.stats.aura) / 6);
+            const overallB = Math.round((b.stats.mir + b.stats.mov + b.stats.noc + b.stats.uti + b.stats.imp + b.stats.aura) / 6);
+            return overallB - overallA;
+        });
+
         jogadores.forEach(jogador => {
             const st = jogador.stats;
-            // Cálculo usando st.aura
+
             const overall = Math.round((st.mir + st.mov + st.noc + st.uti + st.imp + st.aura) / 6);
             const categoria = overall >= 80 ? "ouro" : overall >= 60 ? "prata" : "bronze";
             const fotoHTML = jogador.foto
@@ -275,7 +277,7 @@
                     <div class="card-image">${fotoHTML}</div>
                     <div class="card-name">${jogador.nome}</div>
 
-                    <!-- LINHA ÚNICA DE ATRIBUTOS (Agora com AURA) -->
+                    <!-- LINHA DE ATRIBUTOS -->
                     <div class="card-stats-row">
                         <div class="stat-item"><span class="stat-label">MIR</span><span class="stat-value">${st.mir}</span></div>
                         <div class="stat-item"><span class="stat-label">MOV</span><span class="stat-value">${st.mov}</span></div>
