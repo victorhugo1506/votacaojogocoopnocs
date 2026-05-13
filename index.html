@@ -38,21 +38,27 @@
         }
 
         /*
-         * Template: 422 x 591 px
-         * Área útil da carta: x=49-373 (w=324px), y=40-551 (h=511px)
+         * Template 422x591px — zonas mapeadas por pixel:
          *
-         * Exibindo em 253x354 (60% do original).
-         * Posições convertidas de px absoluto para % da imagem TOTAL:
+         *  Barrinha 1 (topo overall) : y=182px = 30.8%
+         *  Barrinha 2 (base posição) : y=232px = 39.3%
+         *  Bandeira                  : entre barrinha2 e a listra (~42%)
+         *  Grande listra             : y=148-304px (25-51%)
+         *  Linha horiz. divisória    : y=361px = 61.1%
+         *  Nome                      : logo acima de y=361 → ~57-60%
+         *  Stats início              : y~400px = 67.7%
+         *  Linha vertical stats      : x=195px = 46.2%
+         *  Borda esq. da carta       : x=49px  = 11.6%
          *
-         *   overall/pos/flag : left=15.2%, top=10.2%
-         *   foto             : left=31.8%, top=8.5%, right=3%
-         *   nome             : top=61.9%, centralizado
-         *   stats esq        : left=15.2%, top=68.4%
-         *   stats dir        : left=47.4%, top=68.4%
+         *  Overall fica ACIMA da barrinha1 → top ~11%, logo abaixo do topo da carta
+         *  Posição fica ENTRE as barrinhas → top ~31%
+         *  Bandeira fica ABAIXO da barrinha2 → top ~40%
+         *
+         * Exibindo em 253x355px (60% do original)
          */
         .cs-card {
             width: 253px;
-            height: 354px;
+            height: 355px;
             position: relative;
             font-family: 'Teko', sans-serif;
             transition: transform 0.25s, filter 0.25s;
@@ -74,49 +80,63 @@
             z-index: 0;
         }
 
-        /* Overall + Posição + Bandeira
-           Pixel original: left=64px/422=15.2%, top=60px/591=10.2% */
-        .card-top-left {
+        /* Overall: acima da barrinha1 (y=30.8%)
+           Fica em top≈11% para o número ficar entre o topo e a barrinha */
+        .card-overall {
             position: absolute;
-            top: 10.2%;
-            left: 15.2%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 3;
-            color: #2b2214;
-            line-height: 1;
-        }
-
-        .overall {
-            font-size: 40px;
+            top: 10%;
+            left: 11.6%;
+            width: 19%;
+            text-align: center;
+            font-size: 42px;
             font-weight: 700;
             line-height: 1;
+            color: #2b2214;
+            z-index: 3;
         }
 
-        .position {
+        /* Posição: entre barrinha1 (30.8%) e barrinha2 (39.3%)
+           Centro das barrinhas ≈ 35% */
+        .card-position {
+            position: absolute;
+            top: 31.5%;
+            left: 11.6%;
+            width: 19%;
+            text-align: center;
             font-size: 13px;
             font-weight: 600;
             letter-spacing: 0.8px;
-            margin-top: 1px;
+            color: #2b2214;
+            z-index: 3;
+            line-height: 1;
         }
 
-        .flag {
+        /* Bandeira: abaixo da barrinha2 (39.3%) */
+        .card-flag {
+            position: absolute;
+            top: 40.5%;
+            left: 11.6%;
+            width: 19%;
+            display: flex;
+            justify-content: center;
+            z-index: 3;
+        }
+
+        .card-flag img {
             width: 26px;
             height: 16px;
             object-fit: cover;
             border-radius: 2px;
-            margin-top: 5px;
         }
 
-        /* Foto: left=31.8%, top=8.5%, right=3%
-           Altura até a linha divisória (y=361/591=61.1%) menos o top (8.5%) = 52.6% */
+        /* Foto: direita do bloco overall, até a linha divisória
+           left≈32%, top≈7%, right≈3%, height≈53% */
         .card-image {
             position: absolute;
-            top: 8.5%;
-            left: 31.8%;
+            top: 7%;
+            left: 32%;
             right: 3%;
-            height: 52%;
+            height: 53%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -132,15 +152,15 @@
             display: block;
         }
 
-        /* Nome: top=61.9%, centralizado entre as bordas da carta
-           x: de 11.6% a 88.4% */
+        /* Nome: logo acima da linha divisória (y=61.1%)
+           Posicionado em ~57% para ficar visível acima da listra */
         .card-name {
             position: absolute;
-            top: 61.9%;
+            top: 57%;
             left: 11.6%;
-            right: 11.6%;
+            right: 3%;
             text-align: center;
-            font-size: 20px;
+            font-size: 21px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
@@ -149,25 +169,25 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            line-height: 1.1;
+            line-height: 1.15;
         }
 
-        /* Stats esquerda: left=15.2%, top=68.4% */
+        /* Stats — coluna esquerda: left=11.6%, top=67.7%
+           Coluna direita: left=46.2%, top=67.7% */
         .stat-col-left {
             position: absolute;
-            top: 68.4%;
-            left: 15.2%;
+            top: 67%;
+            left: 11.6%;
             display: flex;
             flex-direction: column;
             gap: 1px;
             z-index: 3;
         }
 
-        /* Stats direita: left=47.4%, top=68.4% */
         .stat-col-right {
             position: absolute;
-            top: 68.4%;
-            left: 47.4%;
+            top: 67%;
+            left: 48%;
             display: flex;
             flex-direction: column;
             gap: 1px;
@@ -180,7 +200,7 @@
             gap: 4px;
             font-size: 15px;
             color: #2b2214;
-            line-height: 1.2;
+            line-height: 1.25;
         }
 
         .stat-value {
@@ -243,11 +263,9 @@
                 <div class="cs-card">
                     <img class="card-bg" src="${bgMap[categoria]}" alt="">
 
-                    <div class="card-top-left">
-                        <div class="overall">${overall}</div>
-                        <div class="position">${jogador.posicao}</div>
-                        <img class="flag" src="https://flagcdn.com/w40/br.png" alt="Brasil">
-                    </div>
+                    <div class="card-overall">${overall}</div>
+                    <div class="card-position">${jogador.posicao}</div>
+                    <div class="card-flag"><img src="https://flagcdn.com/w40/br.png" alt="Brasil"></div>
 
                     <div class="card-image">${fotoHTML}</div>
 
@@ -258,7 +276,6 @@
                         <div class="stat-row"><span class="stat-value">${st.mov}</span><span class="stat-label">MOV</span></div>
                         <div class="stat-row"><span class="stat-value">${st.noc}</span><span class="stat-label">NOC</span></div>
                     </div>
-
                     <div class="stat-col-right">
                         <div class="stat-row"><span class="stat-value">${st.uti}</span><span class="stat-label">UTI</span></div>
                         <div class="stat-row"><span class="stat-value">${st.imp}</span><span class="stat-label">IMP</span></div>
