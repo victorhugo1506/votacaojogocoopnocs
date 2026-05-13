@@ -60,76 +60,43 @@
             z-index: 0;
         }
 
-/* 1. OVERALL: Desceu para entrar completamente na carta */
+        /* 1. OVERALL: Topo esquerdo */
         .card-overall {
             position: absolute;
-            top: 18%; /* Aumentado de 14% para 18% para descer do teto */
-            left: 16%;
-            width: 18%;
+            top: 14%;
+            left: 10%;
+            width: 20%;
             text-align: center;
             font-size: 46px;
             font-weight: 700;
             line-height: 0.8;
-            color: #2b2214;
+            color: #3b2313;
+            /* Cor mais escura para o novo template */
             z-index: 3;
         }
 
-        /* 2. POSIÇÃO: Colado logo abaixo do número (Padrão Mbappé) */
+        /* 2. POSIÇÃO: Abaixo do Overall */
         .card-position {
             position: absolute;
-            top: 29%; /* Ajustado para ficar "espremido" debaixo do Overall */
-            left: 16%;
-            width: 18%;
+            top: 26%;
+            left: 10%;
+            width: 20%;
             text-align: center;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
             letter-spacing: 0.5px;
-            color: #2b2214;
+            color: #3b2313;
             z-index: 3;
             line-height: 1;
-        }
-
-        /* 3. BANDEIRA: Vem logo abaixo da posição */
-        .card-flag {
-            position: absolute;
-            top: 36%;
-            left: 16%; 
-            width: 18%;
-            display: flex;
-            justify-content: center;
-            z-index: 3;
-        }
-
-        .card-flag img {
-            width: 26px; 
-            height: 16px;
-            object-fit: cover;
-            border-radius: 2px;
-        }
-
-/* 4. ESCUDO DO TIME: Fica por último na coluna da esquerda */
-        .card-club {
-            position: absolute;
-            top: 43%;
-            left: 16%;
-            width: 18%;
-            display: flex;
-            justify-content: center;
-            z-index: 3;
-        }
-
-        .card-club img {
-            width: 22px; 
-            height: auto;
-            object-fit: contain;
         }
 
         /* FOTO DO JOGADOR */
         .card-image {
             position: absolute;
-            top: 10%;
-            bottom: 39.5%;
-            left: 32%;
+            top: 12%;
+            bottom: 35%;
+            /* Ajustado para encaixar acima do nome */
+            left: 28%;
             right: 5%;
             display: flex;
             align-items: flex-end;
@@ -146,18 +113,19 @@
             display: block;
         }
 
-/* 5. NOME: Desceu para "sentar" exatamente na linha horizontal */
+        /* 3. NOME: Linha central */
         .card-name {
             position: absolute;
-            top: 58.5%; /* Aumentado de 55% para colar na linha */
+            top: 64%;
+            /* Subiu para encostar na linha */
             left: 5%;
             right: 5%;
             text-align: center;
-            font-size: 21px;
+            font-size: 22px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            color: #2b2214;
+            color: #3b2313;
             z-index: 3;
             white-space: nowrap;
             overflow: hidden;
@@ -165,48 +133,76 @@
             line-height: 1.15;
         }
 
-        /* 6. STATS ESQUERDA: Desceu para centralizar no espaço de baixo */
-        .stat-col-left {
+        /* 4. NOVA LINHA DE ATRIBUTOS (HORIZONTAL) */
+        .card-stats-row {
             position: absolute;
-            top: 67.5%; /* Aumentado de 64% para 67.5% */
-            left: 20%; 
+            top: 73.5%;
+            left: 5%;
+            right: 5%;
             display: flex;
-            flex-direction: column;
-            gap: 2px;
+            justify-content: space-around;
+            /* Espalha as 6 notas igualmente */
             z-index: 3;
         }
 
-        /* 7. STATS DIREITA: Desceu para centralizar no espaço de baixo */
-        .stat-col-right {
-            position: absolute;
-            top: 67.5%; /* Aumentado de 64% para 67.5% */
-            left: 52%; 
+        .stat-item {
             display: flex;
             flex-direction: column;
-            gap: 2px;
-            z-index: 3;
-        }
-
-        .stat-row {
-            display: flex;
             align-items: center;
-            gap: 6px;
-            line-height: 1.1;
+            gap: 0px;
+        }
+
+        .stat-label {
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            color: #3b2313;
+            line-height: 1;
         }
 
         .stat-value {
             font-weight: 700;
             font-size: 20px;
-            width: 22px;
-            text-align: right;
-            color: #2b2214;
+            color: #3b2313;
+            line-height: 1.2;
         }
 
-        .stat-label {
-            font-weight: 600;
-            font-size: 15px;
-            letter-spacing: 0.5px;
-            color: #2b2214;
+        /* 5. RODAPÉ (Bandeira, FUT Cards, Escudo) */
+        .card-bottom-icons {
+            position: absolute;
+            top: 86.5%;
+            /* Fica no fundão da carta */
+            left: 10%;
+            right: 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            /* Espaço entre os ícones */
+            z-index: 3;
+        }
+
+        .card-bottom-icons img {
+            object-fit: contain;
+        }
+
+        .flag-icon {
+            width: 28px;
+            height: 18px;
+            border-radius: 2px;
+        }
+
+        .club-icon {
+            width: 22px;
+            height: auto;
+        }
+
+        .fut-text {
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 0.9;
+            text-align: center;
+            color: #3b2313;
         }
     </style>
 </head>
@@ -220,8 +216,8 @@
         const SILHUETA = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" width="85" height="119">
             <defs>
                 <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="rgba(43,34,20,0.28)"/>
-                    <stop offset="100%" stop-color="rgba(43,34,20,0.07)"/>
+                    <stop offset="0%" stop-color="rgba(59,35,19,0.28)"/>
+                    <stop offset="100%" stop-color="rgba(59,35,19,0.07)"/>
                 </linearGradient>
             </defs>
             <ellipse cx="50" cy="32" rx="19" ry="21" fill="url(#sg)"/>
@@ -257,32 +253,29 @@
                 <div class="cs-card">
                     <img class="card-bg" src="${bgMap[categoria]}" alt="">
 
-                    <!-- COLUNA SUPERIOR ESQUERDA -->
+                    <!-- TOPO ESQUERDO -->
                     <div class="card-overall">${overall}</div>
                     <div class="card-position">${jogador.posicao}</div>
                     
-                    <!-- ESPAÇO PARA A LOGO DO TIME -->
-                    <div class="card-club">
-                        <img src="https://i.imgur.com/gK1qO8a.png" alt="Time">
-                    </div>
-                    
-                    <div class="card-flag">
-                        <img src="https://flagcdn.com/w40/br.png" alt="Brasil">
-                    </div>
-
-                    <!-- FOTO E DADOS -->
+                    <!-- FOTO E NOME -->
                     <div class="card-image">${fotoHTML}</div>
                     <div class="card-name">${jogador.nome}</div>
 
-                    <div class="stat-col-left">
-                        <div class="stat-row"><span class="stat-value">${st.mir}</span><span class="stat-label">MIR</span></div>
-                        <div class="stat-row"><span class="stat-value">${st.mov}</span><span class="stat-label">MOV</span></div>
-                        <div class="stat-row"><span class="stat-value">${st.noc}</span><span class="stat-label">NOC</span></div>
+                    <!-- LINHA ÚNICA DE ATRIBUTOS -->
+                    <div class="card-stats-row">
+                        <div class="stat-item"><span class="stat-label">MIR</span><span class="stat-value">${st.mir}</span></div>
+                        <div class="stat-item"><span class="stat-label">MOV</span><span class="stat-value">${st.mov}</span></div>
+                        <div class="stat-item"><span class="stat-label">NOC</span><span class="stat-value">${st.noc}</span></div>
+                        <div class="stat-item"><span class="stat-label">UTI</span><span class="stat-value">${st.uti}</span></div>
+                        <div class="stat-item"><span class="stat-label">IMP</span><span class="stat-value">${st.imp}</span></div>
+                        <div class="stat-item"><span class="stat-label">CLU</span><span class="stat-value">${st.clu}</span></div>
                     </div>
-                    <div class="stat-col-right">
-                        <div class="stat-row"><span class="stat-value">${st.uti}</span><span class="stat-label">UTI</span></div>
-                        <div class="stat-row"><span class="stat-value">${st.imp}</span><span class="stat-label">IMP</span></div>
-                        <div class="stat-row"><span class="stat-value">${st.clu}</span><span class="stat-label">CLU</span></div>
+
+                    <!-- RODAPÉ (Bandeira, FUT, Escudo) -->
+                    <div class="card-bottom-icons">
+                        <img class="flag-icon" src="https://flagcdn.com/w40/br.png" alt="Brasil">
+                        <div class="fut-text">FUT<br>CARDS</div>
+                        <img class="club-icon" src="https://i.imgur.com/gK1qO8a.png" alt="Time">
                     </div>
                 </div>`;
         });
