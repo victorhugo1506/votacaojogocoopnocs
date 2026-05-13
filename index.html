@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cartas CS - O Esquadrão</title>
+    <title>Ranking Votação Jogo Coop - CS2</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&display=swap');
 
@@ -26,6 +26,17 @@
             letter-spacing: 2px;
             margin-bottom: 40px;
             color: #f7d571;
+        }
+
+        /* Data de Atualização Manual */
+        .update-date {
+            text-align: center;
+            font-family: 'Teko', sans-serif;
+            font-size: 22px;
+            color: #a0a0a0;
+            margin-top: -30px;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
         }
 
         .cards-container {
@@ -60,24 +71,24 @@
             z-index: 0;
         }
 
-/* 1. OVERALL: Cor mais escura para contraste extremo */
+        /* 1. OVERALL */
         .card-overall {
             position: absolute;
-            top: 20%;  
-            left: 15%; 
+            top: 20%;
+            left: 15%;
             width: 20%;
             text-align: center;
-            font-size: 44px; 
+            font-size: 44px;
             font-weight: 700;
             line-height: 0.8;
-            color: #150f0a; /* Quase preto puro */
+            color: #150f0a;
             z-index: 3;
         }
 
-/* 2. POSIÇÃO */
+        /* 2. POSIÇÃO */
         .card-position {
             position: absolute;
-            top: 31%; 
+            top: 31%;
             left: 15%;
             width: 20%;
             text-align: center;
@@ -94,7 +105,6 @@
             position: absolute;
             top: 12%;
             bottom: 35%;
-            /* Ajustado para encaixar acima do nome */
             left: 28%;
             right: 5%;
             display: flex;
@@ -112,10 +122,10 @@
             display: block;
         }
 
-/* 3. NOME */
+        /* 3. NOME */
         .card-name {
             position: absolute;
-            top: 57%; 
+            top: 57%;
             left: 5%;
             right: 5%;
             text-align: center;
@@ -131,14 +141,14 @@
             line-height: 1.15;
         }
 
-/* 4. ATRIBUTOS (HORIZONTAL): Paredes laterais espremidas */
+        /* 4. ATRIBUTOS (HORIZONTAL) */
         .card-stats-row {
             position: absolute;
-            top: 66%; 
-            left: 12%;  /* Aumentado de 8% para 12% (empurra pra dentro) */
-            right: 12%; /* Aumentado de 8% para 12% (empurra pra dentro) */
+            top: 66%;
+            left: 12%;
+            right: 12%;
             display: flex;
-            justify-content: space-between; 
+            justify-content: space-between;
             z-index: 3;
         }
 
@@ -146,34 +156,34 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1px; /* Grudou um pouco mais o número da letra */
+            gap: 1px;
         }
 
         .stat-label {
             font-weight: 600;
-            font-size: 12px; /* Diminuído de 13px para 12px */
-            letter-spacing: 0px; /* Tiramos o espaçamento para economizar largura */
+            font-size: 12px;
+            letter-spacing: 0px;
             color: #150f0a;
             line-height: 1;
         }
 
         .stat-value {
             font-weight: 700;
-            font-size: 17px; /* Diminuído de 18px para 17px */
+            font-size: 17px;
             color: #150f0a;
             line-height: 1;
         }
 
-/* 5. RODAPÉ (Bandeiras e Escudos): Subiram para a ponta do escudo */
+        /* 5. RODAPÉ (Bandeiras e Escudos) */
         .card-bottom-icons {
             position: absolute;
-            top: 77%; /* Subiu de 86.5% para 77% para entrar na carta */
+            top: 77%;
             left: 10%;
             right: 10%;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px; 
+            gap: 15px;
             z-index: 3;
         }
 
@@ -192,7 +202,6 @@
             height: auto;
         }
 
-/* 5. TEXTO DO RODAPÉ (FUT CARDS) */
         .fut-text {
             font-size: 11px;
             font-weight: 700;
@@ -206,6 +215,10 @@
 <body>
 
     <h1>Votação Jogo Coop - CS2</h1>
+
+    <!-- Aviso de atualização manual com a data de hoje -->
+    <p class="update-date">Última atualização das notas: 13/05/2026</p>
+
     <div class="cards-container" id="time-amigos"></div>
 
     <script>
@@ -221,17 +234,18 @@
             <path d="M8 140 Q8 88 30 76 Q41 71 50 71 Q59 71 70 76 Q92 88 92 140Z" fill="url(#sg)"/>
         </svg>`;
 
+        // AQUI ESTÃO OS JOGADORES - Troquei 'clu' por 'aura'
         const jogadores = [
-            { nome: "Negaolol", posicao: "ENT", foto: null, stats: { mir: 88, mov: 85, noc: 92, uti: 89, imp: 86, clu: 90 } },
-            { nome: "Alisson", posicao: "AWP", foto: null, stats: { mir: 90, mov: 82, noc: 85, uti: 80, imp: 91, clu: 87 } },
-            { nome: "Kaue", posicao: "ENT", foto: null, stats: { mir: 92, mov: 88, noc: 80, uti: 75, imp: 90, clu: 78 } },
-            { nome: "Mathias", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
-            { nome: "Osvaldo", posicao: "SUP", foto: null, stats: { mir: 55, mov: 50, noc: 52, uti: 58, imp: 50, clu: 55 } },
-            { nome: "Indianolol", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
-            { nome: "Modafoquin", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
-            { nome: "GGelo", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
-            { nome: "Wandher", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
-            { nome: "Psicologo", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } }
+            { nome: "Negaolol", posicao: "ENT", foto: null, stats: { mir: 88, mov: 85, noc: 92, uti: 89, imp: 86, aura: 90 } },
+            { nome: "Alisson", posicao: "AWP", foto: null, stats: { mir: 90, mov: 82, noc: 85, uti: 80, imp: 91, aura: 87 } },
+            { nome: "Kaue", posicao: "ENT", foto: null, stats: { mir: 92, mov: 88, noc: 80, uti: 75, imp: 90, aura: 78 } },
+            { nome: "Mathias", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } },
+            { nome: "Osvaldo", posicao: "SUP", foto: null, stats: { mir: 55, mov: 50, noc: 52, uti: 58, imp: 50, aura: 55 } },
+            { nome: "Indianolol", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } },
+            { nome: "Modafoquin", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } },
+            { nome: "GGelo", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } },
+            { nome: "Wandher", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } },
+            { nome: "Psicologo", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } }
         ];
 
         const bgMap = { ouro: 'ouro.jpg', prata: 'prata.jpg', bronze: 'bronze.jpg' };
@@ -239,7 +253,8 @@
 
         jogadores.forEach(jogador => {
             const st = jogador.stats;
-            const overall = Math.round((st.mir + st.mov + st.noc + st.uti + st.imp + st.clu) / 6);
+            // Cálculo usando st.aura
+            const overall = Math.round((st.mir + st.mov + st.noc + st.uti + st.imp + st.aura) / 6);
             const categoria = overall >= 80 ? "ouro" : overall >= 60 ? "prata" : "bronze";
             const fotoHTML = jogador.foto
                 ? `<img src="${jogador.foto}" alt="${jogador.nome}" onerror="this.style.display='none'">`
@@ -257,14 +272,14 @@
                     <div class="card-image">${fotoHTML}</div>
                     <div class="card-name">${jogador.nome}</div>
 
-                    <!-- LINHA ÚNICA DE ATRIBUTOS -->
+                    <!-- LINHA ÚNICA DE ATRIBUTOS (Agora com AURA) -->
                     <div class="card-stats-row">
                         <div class="stat-item"><span class="stat-label">MIR</span><span class="stat-value">${st.mir}</span></div>
                         <div class="stat-item"><span class="stat-label">MOV</span><span class="stat-value">${st.mov}</span></div>
                         <div class="stat-item"><span class="stat-label">NOC</span><span class="stat-value">${st.noc}</span></div>
                         <div class="stat-item"><span class="stat-label">UTI</span><span class="stat-value">${st.uti}</span></div>
                         <div class="stat-item"><span class="stat-label">IMP</span><span class="stat-value">${st.imp}</span></div>
-                        <div class="stat-item"><span class="stat-label">CLU</span><span class="stat-value">${st.clu}</span></div>
+                        <div class="stat-item"><span class="stat-label">AURA</span><span class="stat-value">${st.aura}</span></div>
                     </div>
 
                     <!-- RODAPÉ (Bandeira, FUT, Escudo) -->
