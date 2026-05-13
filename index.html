@@ -60,12 +60,12 @@
             z-index: 0;
         }
 
-/* 1. OVERALL: Centralizado no eixo das linhas */
+/* 1. OVERALL: Empurrado para a direita para alinhar com as listras */
         .card-overall {
             position: absolute;
-            top: 17.5%;
-            left: 14%; /* Puxado para a direita */
-            width: 18%; /* Espaço reduzido para centralizar perfeito nas linhas */
+            top: 16%; /* Levemente ajustado para colar na primeira listra */
+            left: 16%; /* Empurrado para a direita (era 14%) para centralizar nas listras */
+            width: 18%;
             text-align: center;
             font-size: 46px;
             font-weight: 700;
@@ -74,11 +74,11 @@
             z-index: 3;
         }
 
-/* 2. POSIÇÃO: Acompanhando o Overall */
+        /* 2. POSIÇÃO: Alinhado com o Overall, descendo um pouco mais */
         .card-position {
             position: absolute;
-            top: 35%;
-            left: 14%;
+            top: 33%; /* Ajustado para ficar logo abaixo do Overall, entre as listras */
+            left: 16%; /* Acompanha a centralização do Overall */
             width: 18%;
             text-align: center;
             font-size: 16px;
@@ -89,12 +89,12 @@
             line-height: 1;
         }
 
-/* 3. BANDEIRA: Acompanhando o eixo */
+        /* 3. BANDEIRA: Deslocada para a direita para deixar o "buraco" do brasão do time */
         .card-flag {
             position: absolute;
-            top: 42.5%;
-            left: 14%;
-            width: 18%;
+            top: 41.5%;
+            left: 21%; /* Bem mais pra direita, liberando o lado esquerdo */
+            width: 14%;
             display: flex;
             justify-content: center;
             z-index: 3;
@@ -129,11 +129,10 @@
             object-fit: contain;
             display: block;
         }
-
-/* 4. NOME: Movido para cima */
+/* 4. NOME: Subiu levemente para não "pisar" na linha divisória horizontal */
         .card-name {
             position: absolute;
-            top: 55.5%; /* Diminuído de 57/58% para subir */
+            top: 53.5%; /* Subiu (era 55.5%) */
             left: 5%;
             right: 5%;
             text-align: center;
@@ -149,22 +148,22 @@
             line-height: 1.15;
         }
 
-/* 5. STATS ESQUERDA: Subiu e foi mais para a direita (perto da barra vertical) */
+        /* 5. STATS ESQUERDA: Subiu acompanhando o nome */
         .stat-col-left {
             position: absolute;
-            top: 64.5%; /* Diminuído para subir */
-            left: 20%;  /* Aumentado para ir para a direita */
+            top: 62.5%; /* Subiu (era 64.5%) */
+            left: 20%;
             display: flex;
             flex-direction: column;
             gap: 2px;
             z-index: 3;
         }
 
-        /* 6. STATS DIREITA: Subiu e ajustou a distância */
+        /* 6. STATS DIREITA: Subiu acompanhando o nome */
         .stat-col-right {
             position: absolute;
-            top: 64.5%; /* Diminuído para subir */
-            left: 52%;  /* Puxado um pouco para a direita também */
+            top: 62.5%; /* Subiu (era 64.5%) */
+            left: 52%;
             display: flex;
             flex-direction: column;
             gap: 2px;
