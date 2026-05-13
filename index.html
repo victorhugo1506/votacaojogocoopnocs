@@ -38,19 +38,21 @@
         }
 
         /*
-         * Template original: 422 x 591 px
-         * Exibição: 211 x 295 px (50%)
-         * Todos os % abaixo são relativos a esses valores.
+         * Template: 422 x 591 px
+         * Área útil da carta: x=49-373 (w=324px), y=40-551 (h=511px)
          *
-         * Zonas mapeadas por pixel:
-         *   Overall+pos+flag : left 2-21%, top 8-32%
-         *   Foto             : left 22-98%, top 0-60%
-         *   Nome             : top 61-68%, centralizado
-         *   Stats            : top 68-88%, divisória vertical em 46%
+         * Exibindo em 253x354 (60% do original).
+         * Posições convertidas de px absoluto para % da imagem TOTAL:
+         *
+         *   overall/pos/flag : left=15.2%, top=10.2%
+         *   foto             : left=31.8%, top=8.5%, right=3%
+         *   nome             : top=61.9%, centralizado
+         *   stats esq        : left=15.2%, top=68.4%
+         *   stats dir        : left=47.4%, top=68.4%
          */
         .cs-card {
-            width: 211px;
-            height: 295px;
+            width: 253px;
+            height: 354px;
             position: relative;
             font-family: 'Teko', sans-serif;
             transition: transform 0.25s, filter 0.25s;
@@ -59,10 +61,9 @@
 
         .cs-card:hover {
             transform: translateY(-10px) scale(1.04);
-            filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.85));
+            filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.9));
         }
 
-        /* Template de fundo — usa object-fit:fill para cobrir 100% sem cortar */
         .card-bg {
             position: absolute;
             inset: 0;
@@ -74,13 +75,11 @@
         }
 
         /* Overall + Posição + Bandeira
-           No template: traço aparece em y≈8% e o bloco vai até y≈32%
-           x: começa em ~2%, vai até ~21% */
+           Pixel original: left=64px/422=15.2%, top=60px/591=10.2% */
         .card-top-left {
             position: absolute;
-            top: 8%;
-            left: 4%;
-            width: 19%;
+            top: 10.2%;
+            left: 15.2%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -90,34 +89,34 @@
         }
 
         .overall {
-            font-size: 34px;
+            font-size: 40px;
             font-weight: 700;
             line-height: 1;
         }
 
         .position {
-            font-size: 11px;
+            font-size: 13px;
             font-weight: 600;
             letter-spacing: 0.8px;
             margin-top: 1px;
         }
 
         .flag {
-            width: 22px;
-            height: 14px;
+            width: 26px;
+            height: 16px;
             object-fit: cover;
             border-radius: 2px;
-            margin-top: 4px;
+            margin-top: 5px;
         }
 
-        /* Foto do jogador
-           Ocupa: left 22% até 98%, top 2% até 60% */
+        /* Foto: left=31.8%, top=8.5%, right=3%
+           Altura até a linha divisória (y=361/591=61.1%) menos o top (8.5%) = 52.6% */
         .card-image {
             position: absolute;
-            top: 2%;
-            left: 22%;
-            right: 2%;
-            height: 58%;
+            top: 8.5%;
+            left: 31.8%;
+            right: 3%;
+            height: 52%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -133,15 +132,15 @@
             display: block;
         }
 
-        /* Nome
-           No template a linha divisória horizontal está em y≈61%
-           Nome fica logo acima dela */
+        /* Nome: top=61.9%, centralizado entre as bordas da carta
+           x: de 11.6% a 88.4% */
         .card-name {
             position: absolute;
-            top: 61%;
-            width: 100%;
+            top: 61.9%;
+            left: 11.6%;
+            right: 11.6%;
             text-align: center;
-            font-size: 17px;
+            font-size: 20px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
@@ -150,47 +149,49 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            padding: 0 6px;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
-        /* Stats
-           Começam em y≈68%, linha vertical em x≈46%
-           Coluna esq: x 6-44%  |  Coluna dir: x 48-94% */
-        .card-stats {
+        /* Stats esquerda: left=15.2%, top=68.4% */
+        .stat-col-left {
             position: absolute;
-            top: 68%;
-            left: 6%;
-            width: 88%;
-            display: flex;
-            justify-content: space-between;
-            z-index: 3;
-        }
-
-        .stat-column {
+            top: 68.4%;
+            left: 15.2%;
             display: flex;
             flex-direction: column;
             gap: 1px;
+            z-index: 3;
+        }
+
+        /* Stats direita: left=47.4%, top=68.4% */
+        .stat-col-right {
+            position: absolute;
+            top: 68.4%;
+            left: 47.4%;
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            z-index: 3;
         }
 
         .stat-row {
             display: flex;
             align-items: center;
             gap: 4px;
-            font-size: 13px;
+            font-size: 15px;
             color: #2b2214;
             line-height: 1.2;
         }
 
         .stat-value {
             font-weight: 700;
-            width: 18px;
+            width: 20px;
             text-align: right;
         }
 
         .stat-label {
             font-weight: 400;
-            font-size: 10px;
+            font-size: 11px;
             letter-spacing: 0.5px;
         }
     </style>
@@ -202,11 +203,11 @@
     <div class="cards-container" id="time-amigos"></div>
 
     <script>
-        const SILHUETA = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" width="90" height="126">
+        const SILHUETA = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" width="85" height="119">
             <defs>
                 <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="rgba(43,34,20,0.30)"/>
-                    <stop offset="100%" stop-color="rgba(43,34,20,0.08)"/>
+                    <stop offset="0%" stop-color="rgba(43,34,20,0.28)"/>
+                    <stop offset="100%" stop-color="rgba(43,34,20,0.07)"/>
                 </linearGradient>
             </defs>
             <ellipse cx="50" cy="32" rx="19" ry="21" fill="url(#sg)"/>
@@ -252,17 +253,16 @@
 
                     <div class="card-name">${jogador.nome}</div>
 
-                    <div class="card-stats">
-                        <div class="stat-column">
-                            <div class="stat-row"><span class="stat-value">${st.mir}</span><span class="stat-label">MIR</span></div>
-                            <div class="stat-row"><span class="stat-value">${st.mov}</span><span class="stat-label">MOV</span></div>
-                            <div class="stat-row"><span class="stat-value">${st.noc}</span><span class="stat-label">NOC</span></div>
-                        </div>
-                        <div class="stat-column">
-                            <div class="stat-row"><span class="stat-value">${st.uti}</span><span class="stat-label">UTI</span></div>
-                            <div class="stat-row"><span class="stat-value">${st.imp}</span><span class="stat-label">IMP</span></div>
-                            <div class="stat-row"><span class="stat-value">${st.clu}</span><span class="stat-label">CLU</span></div>
-                        </div>
+                    <div class="stat-col-left">
+                        <div class="stat-row"><span class="stat-value">${st.mir}</span><span class="stat-label">MIR</span></div>
+                        <div class="stat-row"><span class="stat-value">${st.mov}</span><span class="stat-label">MOV</span></div>
+                        <div class="stat-row"><span class="stat-value">${st.noc}</span><span class="stat-label">NOC</span></div>
+                    </div>
+
+                    <div class="stat-col-right">
+                        <div class="stat-row"><span class="stat-value">${st.uti}</span><span class="stat-label">UTI</span></div>
+                        <div class="stat-row"><span class="stat-value">${st.imp}</span><span class="stat-label">IMP</span></div>
+                        <div class="stat-row"><span class="stat-value">${st.clu}</span><span class="stat-label">CLU</span></div>
                     </div>
                 </div>`;
         });
