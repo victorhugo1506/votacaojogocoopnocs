@@ -60,12 +60,12 @@
             z-index: 0;
         }
 
-/* 1. OVERALL: Empurrado para a direita para alinhar com as listras */
+        /* 1. OVERALL */
         .card-overall {
             position: absolute;
-            top: 16%; /* Levemente ajustado para colar na primeira listra */
-            left: 16%; /* Empurrado para a direita (era 14%) para centralizar nas listras */
-            width: 18%;
+            top: 12%;
+            left: 12%;
+            width: 22%;
             text-align: center;
             font-size: 46px;
             font-weight: 700;
@@ -74,12 +74,12 @@
             z-index: 3;
         }
 
-        /* 2. POSIÇÃO: Alinhado com o Overall, descendo um pouco mais */
+        /* 2. POSIÇÃO */
         .card-position {
             position: absolute;
-            top: 33%; /* Ajustado para ficar logo abaixo do Overall, entre as listras */
-            left: 16%; /* Acompanha a centralização do Overall */
-            width: 18%;
+            top: 25%;
+            left: 12%;
+            width: 22%;
             text-align: center;
             font-size: 16px;
             font-weight: 700;
@@ -89,30 +89,46 @@
             line-height: 1;
         }
 
-        /* 3. BANDEIRA: Deslocada para a direita para deixar o "buraco" do brasão do time */
+        /* 3. ESCUDO DO TIME */
+        .card-club {
+            position: absolute;
+            top: 32%;
+            left: 12%;
+            width: 22%;
+            display: flex;
+            justify-content: center;
+            z-index: 3;
+        }
+
+        .card-club img {
+            width: 22px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* 4. BANDEIRA */
         .card-flag {
             position: absolute;
-            top: 41.5%;
-            left: 21%; /* Bem mais pra direita, liberando o lado esquerdo */
-            width: 14%;
+            top: 42%;
+            left: 15%;
+            width: 16%;
             display: flex;
             justify-content: center;
             z-index: 3;
         }
 
         .card-flag img {
-            width: 26px; 
+            width: 26px;
             height: 16px;
             object-fit: cover;
             border-radius: 2px;
         }
 
-        /* FOTO: Base cravada na linha divisória horizontal */
+        /* FOTO */
         .card-image {
             position: absolute;
             top: 10%;
             bottom: 39.5%;
-            /* Força a imagem a não passar da linha divisória */
             left: 32%;
             right: 5%;
             display: flex;
@@ -129,10 +145,11 @@
             object-fit: contain;
             display: block;
         }
-/* 4. NOME: Subiu levemente para não "pisar" na linha divisória horizontal */
+
+        /* 5. NOME */
         .card-name {
             position: absolute;
-            top: 53.5%; /* Subiu (era 55.5%) */
+            top: 51%;
             left: 5%;
             right: 5%;
             text-align: center;
@@ -148,21 +165,21 @@
             line-height: 1.15;
         }
 
-        /* 5. STATS ESQUERDA: Subiu acompanhando o nome */
+        /* 6. STATS ESQUERDA */
         .stat-col-left {
             position: absolute;
-            top: 62.5%; /* Subiu (era 64.5%) */
-            left: 20%;
+            top: 60%;
+            left: 18%;
             display: flex;
             flex-direction: column;
             gap: 2px;
             z-index: 3;
         }
 
-        /* 6. STATS DIREITA: Subiu acompanhando o nome */
+        /* 7. STATS DIREITA */
         .stat-col-right {
             position: absolute;
-            top: 62.5%; /* Subiu (era 64.5%) */
+            top: 60%;
             left: 52%;
             display: flex;
             flex-direction: column;
@@ -174,14 +191,12 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            /* Mais respiro entre o número e a letra */
             line-height: 1.1;
         }
 
         .stat-value {
             font-weight: 700;
             font-size: 20px;
-            /* Números maiores, padrão FIFA */
             width: 22px;
             text-align: right;
             color: #2b2214;
@@ -190,7 +205,6 @@
         .stat-label {
             font-weight: 600;
             font-size: 15px;
-            /* Letras levemente menores que o número */
             letter-spacing: 0.5px;
             color: #2b2214;
         }
@@ -243,12 +257,21 @@
                 <div class="cs-card">
                     <img class="card-bg" src="${bgMap[categoria]}" alt="">
 
+                    <!-- COLUNA SUPERIOR ESQUERDA -->
                     <div class="card-overall">${overall}</div>
                     <div class="card-position">${jogador.posicao}</div>
-                    <div class="card-flag"><img src="https://flagcdn.com/w40/br.png" alt="Brasil"></div>
+                    
+                    <!-- ESPAÇO PARA A LOGO DO TIME -->
+                    <div class="card-club">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Furia_Esports_logo.svg/1200px-Furia_Esports_logo.svg.png" alt="Time">
+                    </div>
+                    
+                    <div class="card-flag">
+                        <img src="https://flagcdn.com/w40/br.png" alt="Brasil">
+                    </div>
 
+                    <!-- FOTO E DADOS -->
                     <div class="card-image">${fotoHTML}</div>
-
                     <div class="card-name">${jogador.nome}</div>
 
                     <div class="stat-col-left">
