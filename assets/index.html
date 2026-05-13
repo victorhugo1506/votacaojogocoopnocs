@@ -129,17 +129,14 @@
             display: block;
         }
 
-        /* ----- INÍCIO DO EFEITO SPOTIFY ----- */
         .card-name-wrapper {
             position: absolute;
             top: 57%;
-            /* Limites apertados para não vazar a imagem da carta */
             left: 14%;
             right: 14%;
             overflow: hidden;
             white-space: nowrap;
             z-index: 3;
-            /* Cria o fade/sombra nas beiradinhas */
             -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
             mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
         }
@@ -174,13 +171,10 @@
                 transform: translateX(0);
             }
 
-            /* Desliza metade do bloco (o nome original) e reseta sem que o olho perceba */
             100% {
                 transform: translateX(-50%);
             }
         }
-
-        /* ----- FIM DO EFEITO SPOTIFY ----- */
 
         .card-stats-row {
             position: absolute;
@@ -255,7 +249,6 @@
     <h2>👑 O Melhor de Todos os Tempos 👑</h2>
     <div class="cards-container" id="goat-card"></div>
 
-    <!-- O RESTO DO ESQUADRÃO -->
     <h2>Esquadrão Ativo</h2>
     <div class="cards-container" id="time-amigos"></div>
 
@@ -282,7 +275,7 @@
             stats: { mir: 89, mov: 86, noc: 92, uti: 79, imp: 94, aura: 93 }
         };
 
-        // 2. O ESQUADRÃO ATUAL (Notas ativas da semana/mês)
+        // 2 OS CYBER ATLETAS ATUAIS (Notas ativas da semana/mês)
         const jogadores = [
             { nome: "Negaolol", posicao: "ENT", foto: "assets/players/negaolol.png", time: "assets/times/furia.png", stats: { mir: 63, mov: 55, noc: 58, uti: 60, imp: 56, aura: 54 } },
             { nome: "Alisson To Certo", posicao: "AWP", foto: null, time: "assets/times/navi.png", stats: { mir: 72, mov: 73, noc: 74, uti: 71, imp: 74, aura: 82 } },
@@ -308,7 +301,6 @@
             return overallB - overallA;
         });
 
-        // Fábrica de Cartas
         function gerarHTMLCarta(jogador) {
             const st = jogador.stats;
             const overall = Math.round((st.mir + st.mov + st.noc + st.uti + st.imp + st.aura) / 6);
@@ -317,8 +309,7 @@
                 ? `<img src="${jogador.foto}" alt="${jogador.nome}" onerror="this.style.display='none'">`
                 : SILHUETA;
 
-            // --- LÓGICA DO NOME ESTILO SPOTIFY ---
-            // Se o nome for maior que 12 letras, criamos o texto duplicado com a classe da animação
+            // Se o nome for maior que 12 letras, criam o texto duplicado com a classe da animação
             const precisaDeslizar = jogador.nome.length > 12;
             const nomeExibicao = precisaDeslizar
                 ? `<div class="nome-texto nome-deslizando">${jogador.nome} &nbsp;&nbsp;•&nbsp;&nbsp; ${jogador.nome}</div>`
