@@ -202,19 +202,18 @@
             height: auto;
         }
 
-        .fut-text {
-            font-size: 11px;
-            font-weight: 700;
-            line-height: 0.9;
-            text-align: center;
-            color: #150f0a;
+/* Substitua o antigo .fut-text por este código: */
+        .cs-logo {
+            width: 45px; /* Tamanho ajustado para caber perfeitamente no meio */
+            height: auto;
+            object-fit: contain;
         }
     </style>
 </head>
 
 <body>
 
-    <h1>Votação Jogo Coop - CS2</h1>
+    <h1>Notas dos "Cyber atletas" do Votação Jogo Coop - CS2</h1>
 
     <!-- Aviso de atualização manual com a data de hoje -->
     <p class="update-date">Última atualização das notas: 13/05/2026</p>
@@ -282,10 +281,10 @@
                         <div class="stat-item"><span class="stat-label">AURA</span><span class="stat-value">${st.aura}</span></div>
                     </div>
 
-                    <!-- RODAPÉ (Bandeira, FUT, Escudo) -->
+                    <!-- RODAPÉ (Bandeira, CS2, Escudo) -->
                     <div class="card-bottom-icons">
                         <img class="flag-icon" src="https://flagcdn.com/w40/br.png" alt="Brasil">
-                        <div class="fut-text">FUT<br>CARDS</div>
+                        <img class="cs-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Counter-Strike_2_logo.svg/320px-Counter-Strike_2_logo.svg.png" alt="CS2">
                         <img class="club-icon" src="https://i.imgur.com/gK1qO8a.png" alt="Time">
                     </div>
                 </div>`;
