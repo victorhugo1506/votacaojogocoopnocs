@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking Cartinhas CS2</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #1a1a24;
+            padding: 50px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 'Teko', sans-serif;
+            font-size: 50px;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            color: #f7d571;
+        }
+
+        h2 {
+            text-align: center;
+            font-family: 'Teko', sans-serif;
+            font-size: 40px;
+            letter-spacing: 2px;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            color: #f7d571;
+            text-transform: uppercase;
+        }
+
+        .update-date {
+            text-align: center;
+            font-family: 'Teko', sans-serif;
+            font-size: 22px;
+            color: #a0a0a0;
+            margin-top: -30px;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .cs-card {
+            width: 253px;
+            height: 355px;
+            position: relative;
+            font-family: 'Teko', sans-serif;
+            transition: transform 0.25s, filter 0.25s;
+            cursor: default;
+        }
+
+        .cs-card:hover {
+            transform: translateY(-10px) scale(1.04);
+            filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.9));
+        }
+
+        /* .card-bg removido - usando background-image no .cs-card */
+
+        .card-overall {
+            position: absolute;
+            top: 20%;
+            left: 15%;
+            width: 20%;
+            text-align: center;
+            font-size: 44px;
+            font-weight: 700;
+            line-height: 0.8;
+            color: #150f0a;
+            z-index: 3;
+        }
+
+        .card-position {
+            position: absolute;
+            top: 31%;
+            left: 15%;
+            width: 20%;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #150f0a;
+            z-index: 3;
+            line-height: 1;
+        }
+
+        .card-image {
+            position: absolute;
+            top: 12%;
+            bottom: 35%;
+            left: 28%;
+            right: 5%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .card-image img,
+        .card-image svg {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* ----- INÍCIO DO EFEITO SPOTIFY ----- */
+        .card-name-wrapper {
+            position: absolute;
+            top: 57%;
+            /* Limites apertados para não vazar a imagem da carta */
+            left: 14%;
+            right: 14%;
+            overflow: hidden;
+            white-space: nowrap;
+            z-index: 3;
+            /* Cria o fade/sombra nas beiradinhas */
+            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        }
+
+        .nome-texto {
+            font-size: 19px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #150f0a;
+            /* Contorno branco para leitura em fotos escuras */
+            text-shadow:
+                -1px -1px 0 #fff,
+                1px -1px 0 #fff,
+                -1px 1px 0 #fff,
+                1px 1px 0 #fff,
+                0px 0px 5px rgba(255, 255, 255, 0.9);
+        }
+
+        .nome-parado {
+            display: block;
+            text-align: center;
+        }
+
+        .nome-deslizando {
+            display: inline-block;
+            animation: deslizarSpotify 7s linear infinite;
+        }
+
+        @keyframes deslizarSpotify {
+            0% {
+                transform: translateX(0);
+            }
+
+            /* Desliza metade do bloco (o nome original) e reseta sem que o olho perceba */
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ----- FIM DO EFEITO SPOTIFY ----- */
+
+        .card-stats-row {
+            position: absolute;
+            top: 66%;
+            left: 12%;
+            right: 12%;
+            display: flex;
+            justify-content: space-between;
+            z-index: 3;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1px;
+        }
+
+        .stat-label {
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 0px;
+            color: #150f0a;
+            line-height: 1;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            font-size: 17px;
+            color: #150f0a;
+            line-height: 1;
+        }
+
+        .card-bottom-icons {
+            position: absolute;
+            top: 77%;
+            left: 10%;
+            right: 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            z-index: 3;
+        }
+
+        .card-bottom-icons img {
+            height: 18px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .flag-icon {
+            width: 26px;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        .cs-logo,
+        .club-icon {
+            max-width: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Notas dos "Cyber Atletas" do Votação Jogo Coop - CS2</h1>
+
+    <p class="update-date">Última atualização das notas: 13/05/2026</p>
+
+    <!-- O GOAT ISOLADO NO TOPO -->
+    <h2>👑 O Melhor de Todos os Tempos 👑</h2>
+    <div class="cards-container" id="goat-card"></div>
+
+    <!-- O RESTO DO ESQUADRÃO -->
+    <h2>Esquadrão Ativo</h2>
+    <div class="cards-container" id="time-amigos"></div>
+
+    <script>
+        const SILHUETA = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" width="85" height="119">
+            <defs>
+                <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="rgba(59,35,19,0.28)"/>
+                    <stop offset="100%" stop-color="rgba(59,35,19,0.07)"/>
+                </linearGradient>
+            </defs>
+            <ellipse cx="50" cy="32" rx="19" ry="21" fill="url(#sg)"/>
+            <rect x="43" y="50" width="14" height="12" rx="3" fill="url(#sg)"/>
+            <path d="M8 140 Q8 88 30 76 Q41 71 50 71 Q59 71 70 76 Q92 88 92 140Z" fill="url(#sg)"/>
+        </svg>`;
+
+        // 1. A CARTA RECORDE (O GOAT HISTÓRICO)
+        // Atualize apenas quando alguém bater o recorde atual de Overall
+        const cartaGOAT = {
+            nome: "Stalinosvaldo (Recorde)",
+            posicao: "SUP",
+            foto: "assets/players/osvaldo.png",
+            time: "assets/times/furia.png",
+            stats: { mir: 89, mov: 86, noc: 92, uti: 79, imp: 94, aura: 93 }
+        };
+
+        // 2. O ESQUADRÃO ATUAL (Notas ativas da semana/mês)
+        const jogadores = [
+            { nome: "Negaolol", posicao: "ENT", foto: "assets/players/negaolol.png", time: "assets/times/furia.png", stats: { mir: 63, mov: 55, noc: 58, uti: 60, imp: 56, aura: 54 } },
+            { nome: "Alisson To Certo", posicao: "AWP", foto: null, time: "assets/times/navi.png", stats: { mir: 72, mov: 73, noc: 74, uti: 71, imp: 74, aura: 82 } },
+            { nome: "Kaue Superidol", posicao: "ENT", foto: null, time: "assets/times/faze.png", stats: { mir: 58, mov: 62, noc: 50, uti: 55, imp: 52, aura: 56 } },
+            { nome: "Mathias Flinstons", posicao: "SUP", foto: null, time: "assets/times/vitality.png", stats: { mir: 76, mov: 81, noc: 85, uti: 76, imp: 83, aura: 82 } },
+            { nome: "Stalinosvaldo", posicao: "SUP", foto: "assets/players/osvaldo.png", time: "assets/times/furia.png", stats: { mir: 89, mov: 86, noc: 92, uti: 79, imp: 94, aura: 93 } },
+            { nome: "Indianolol", posicao: "SUP", foto: null, time: "assets/times/navi.png", stats: { mir: 91, mov: 82, noc: 88, uti: 75, imp: 92, aura: 89 } },
+            { nome: "Modafoquin Bilas", posicao: "SUP", foto: null, time: "assets/times/faze.png", stats: { mir: 86, mov: 88, noc: 94, uti: 74, imp: 91, aura: 92 } },
+            { nome: "GGelo", posicao: "SUP", foto: null, time: "assets/times/vitality.png", stats: { mir: 62, mov: 58, noc: 59, uti: 59, imp: 56, aura: 65 } },
+            { nome: "Wandher Flashman", posicao: "SUP", foto: null, time: "assets/times/furia.png", stats: { mir: 87, mov: 88, noc: 92, uti: 71, imp: 91, aura: 94 } },
+            { nome: "Psicologo Vitor", posicao: "SUP", foto: null, time: "assets/times/navi.png", stats: { mir: 71, mov: 80, noc: 80, uti: 75, imp: 80, aura: 75 } }
+        ];
+
+        const bgMap = { ouro: 'assets/cartas/ouro.jpg', prata: 'assets/cartas/prata.jpg', bronze: 'assets/cartas/bronze.jpg' };
+
+        const containerGoat = document.getElementById('goat-card');
+        const containerTime = document.getElementById('time-amigos');
+
+        // Ordena o esquadrão atual do maior Overall para o menor
+        jogadores.sort((a, b) => {
+            const overallA = Math.round((a.stats.mir + a.stats.mov + a.stats.noc + a.stats.uti + a.stats.imp + a.stats.aura) / 6);
+            const overallB = Math.round((b.stats.mir + b.stats.mov + b.stats.noc + b.stats.uti + b.stats.imp + b.stats.aura) / 6);
+            return overallB - overallA;
+        });
+
+        // Fábrica de Cartas
+        function gerarHTMLCarta(jogador) {
+            const st = jogador.stats;
+            const overall = Math.round((st.mir + st.mov + st.noc + st.uti + st.imp + st.aura) / 6);
+            const categoria = overall >= 80 ? "ouro" : overall >= 60 ? "prata" : "bronze";
+            const fotoHTML = jogador.foto
+                ? `<img src="${jogador.foto}" alt="${jogador.nome}" onerror="this.style.display='none'">`
+                : SILHUETA;
+
+            // --- LÓGICA DO NOME ESTILO SPOTIFY ---
+            // Se o nome for maior que 12 letras, criamos o texto duplicado com a classe da animação
+            const precisaDeslizar = jogador.nome.length > 12;
+            const nomeExibicao = precisaDeslizar
+                ? `<div class="nome-texto nome-deslizando">${jogador.nome} &nbsp;&nbsp;•&nbsp;&nbsp; ${jogador.nome}</div>`
+                : `<div class="nome-texto nome-parado">${jogador.nome}</div>`;
+            // -------------------------------------
+
+            return `
+                <div class="cs-card" style="background-image:url('${bgMap[categoria]}');background-size:100% 100%;background-repeat:no-repeat;">
+
+
+                    <div class="card-overall">${overall}</div>
+                    <div class="card-position">${jogador.posicao}</div>
+                    
+                    <div class="card-image">${fotoHTML}</div>
+                    
+                    <!-- Substituímos o antigo card-name por este wrapper animado -->
+                    <div class="card-name-wrapper">
+                        ${nomeExibicao}
+                    </div>
+
+                    <div class="card-stats-row">
+                        <div class="stat-item"><span class="stat-label">MIR</span><span class="stat-value">${st.mir}</span></div>
+                        <div class="stat-item"><span class="stat-label">MOV</span><span class="stat-value">${st.mov}</span></div>
+                        <div class="stat-item"><span class="stat-label">NOC</span><span class="stat-value">${st.noc}</span></div>
+                        <div class="stat-item"><span class="stat-label">UTI</span><span class="stat-value">${st.uti}</span></div>
+                        <div class="stat-item"><span class="stat-label">IMP</span><span class="stat-value">${st.imp}</span></div>
+                        <div class="stat-item"><span class="stat-label">AURA</span><span class="stat-value">${st.aura}</span></div>
+                    </div>
+
+                    <div class="card-bottom-icons">
+                        <img class="flag-icon" src="https://flagcdn.com/w40/br.png" alt="Brasil">
+                        <img class="cs-logo" src="assets/cs2.png" alt="CS2">
+                        <img class="club-icon" src="${jogador.time}" alt="Time">
+                    </div>
+                </div>`;
+        }
+
+        // Renderiza o GOAT isolado no topo
+        containerGoat.innerHTML = gerarHTMLCarta(cartaGOAT);
+
+        // Renderiza TODOS os patifes, já ordenados
+        jogadores.forEach(jogador => {
+            containerTime.innerHTML += gerarHTMLCarta(jogador);
+        });
+    </script>
+</body>
+
+</html>
