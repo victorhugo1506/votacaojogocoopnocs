@@ -174,32 +174,36 @@
             line-height: 1;
         }
 
-        /* 5. RODAPÉ (Bandeiras e Escudos) */
+/* 5. RODAPÉ (Bandeiras e Escudos) */
         .card-bottom-icons {
             position: absolute;
-            top: 77%;
+            top: 77%; 
             left: 10%;
             right: 10%;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px;
+            gap: 15px; 
             z-index: 3;
         }
 
+        /* O SEGREDO: Trava a altura de todas as imagens em 18px (altura da bandeira) */
         .card-bottom-icons img {
+            height: 18px; 
+            width: auto; /* A largura se ajusta sozinha, impedindo que a logo fique esticada/gorda */
             object-fit: contain;
         }
 
-        .flag-icon {
-            width: 28px;
-            height: 18px;
-            border-radius: 2px;
+        /* A bandeira é a única que precisa de largura fixa e borda arredondada */
+        .flag-icon { 
+            width: 26px; 
+            object-fit: cover; 
+            border-radius: 2px; 
         }
 
-        .club-icon {
-            width: 22px;
-            height: auto;
+        /* Limite extra caso alguma logo seja estupidamente larga */
+        .cs-logo, .club-icon { 
+            max-width: 30px; 
         }
 
 /* Substitua o antigo .fut-text por este código: */
