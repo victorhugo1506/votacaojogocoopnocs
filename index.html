@@ -60,31 +60,31 @@
             z-index: 0;
         }
 
-/* 1. OVERALL: Desceu e foi pra direita para fugir do corte da carta */
+/* 1. OVERALL: Cor mais escura para contraste extremo */
         .card-overall {
             position: absolute;
-            top: 20%;  /* Aumentou para descer */
-            left: 15%; /* Aumentou para afastar da borda */
+            top: 20%;  
+            left: 15%; 
             width: 20%;
             text-align: center;
-            font-size: 44px; /* Levemente ajustado */
+            font-size: 44px; 
             font-weight: 700;
             line-height: 0.8;
-            color: #3b2313; 
+            color: #150f0a; /* Quase preto puro */
             z-index: 3;
         }
 
-/* 2. POSIÇÃO: Acompanha a descida do Overall */
+/* 2. POSIÇÃO */
         .card-position {
             position: absolute;
-            top: 31%; /* Desceu junto */
+            top: 31%; 
             left: 15%;
             width: 20%;
             text-align: center;
             font-size: 16px;
             font-weight: 700;
             letter-spacing: 0.5px;
-            color: #3b2313;
+            color: #150f0a;
             z-index: 3;
             line-height: 1;
         }
@@ -112,18 +112,18 @@
             display: block;
         }
 
-/* 3. NOME: Subiu bastante para entrar na área visível */
+/* 3. NOME */
         .card-name {
             position: absolute;
-            top: 57%; /* Subiu de 64% para 57% */
+            top: 57%; 
             left: 5%;
             right: 5%;
             text-align: center;
             font-size: 20px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #3b2313;
+            letter-spacing: 1px;
+            color: #150f0a;
             z-index: 3;
             white-space: nowrap;
             overflow: hidden;
@@ -131,14 +131,14 @@
             line-height: 1.15;
         }
 
-/* 4. ATRIBUTOS (HORIZONTAL): Subiram para colar abaixo do nome */
+/* 4. ATRIBUTOS (HORIZONTAL): Paredes laterais espremidas */
         .card-stats-row {
             position: absolute;
-            top: 66%; /* Subiu de 73.5% para 66% */
-            left: 8%;
-            right: 8%;
+            top: 66%; 
+            left: 12%;  /* Aumentado de 8% para 12% (empurra pra dentro) */
+            right: 12%; /* Aumentado de 8% para 12% (empurra pra dentro) */
             display: flex;
-            justify-content: space-between; /* Espalha as 6 notas na linha */
+            justify-content: space-between; 
             z-index: 3;
         }
 
@@ -146,21 +146,21 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2px;
+            gap: 1px; /* Grudou um pouco mais o número da letra */
         }
 
         .stat-label {
             font-weight: 600;
-            font-size: 13px; /* Reduzido para caber melhor os 6 */
-            letter-spacing: 0.5px;
-            color: #3b2313;
+            font-size: 12px; /* Diminuído de 13px para 12px */
+            letter-spacing: 0px; /* Tiramos o espaçamento para economizar largura */
+            color: #150f0a;
             line-height: 1;
         }
 
         .stat-value {
             font-weight: 700;
-            font-size: 18px; /* Reduzido levemente */
-            color: #3b2313;
+            font-size: 17px; /* Diminuído de 18px para 17px */
+            color: #150f0a;
             line-height: 1;
         }
 
@@ -192,12 +192,13 @@
             height: auto;
         }
 
+/* 5. TEXTO DO RODAPÉ (FUT CARDS) */
         .fut-text {
             font-size: 11px;
             font-weight: 700;
             line-height: 0.9;
             text-align: center;
-            color: #3b2313;
+            color: #150f0a;
         }
     </style>
 </head>
