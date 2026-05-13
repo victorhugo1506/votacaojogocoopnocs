@@ -39,123 +39,121 @@
             margin: 0 auto;
         }
 
-        /* ---- CARTA BASE ---- */
+        /*
+         * O template JPG tem proporção ~420x560px (3:4).
+         * Usamos 210x280 como tamanho de exibição (50% do original).
+         * Todos os elementos são posicionados em % para escalar junto.
+         */
         .cs-card {
-            width: 220px;
-            height: 320px;
-            background-size: cover;
-            background-position: center;
+            width: 210px;
+            height: 280px;
             position: relative;
-            border-radius: 12px;
-            overflow: hidden;
             font-family: 'Teko', sans-serif;
-            transition: transform 0.2s;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
             cursor: default;
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         .cs-card:hover {
-            transform: translateY(-8px) scale(1.02);
+            transform: translateY(-10px) scale(1.04);
+            box-shadow: 0 22px 50px rgba(0, 0, 0, 0.9);
         }
 
-        .ouro {
-            background-image: url('ouro.jpg');
+        /* Imagem de fundo da carta ocupa 100% */
+        .card-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            display: block;
+            z-index: 0;
         }
 
-        .prata {
-            background-image: url('prata.jpg');
-        }
-
-        .bronze {
-            background-image: url('bronze.jpg');
-        }
-
-        /* ---- COLUNA SUPERIOR ESQUERDA: overall, posição, bandeira ---- */
+        /* ---- COLUNA SUPERIOR ESQUERDA: overall + posição + bandeira ----
+           No template, essa área fica em ~10% left, ~12% top             */
         .card-top-left {
             position: absolute;
-            top: 18px;
-            left: 14px;
+            top: 12%;
+            left: 8%;
             display: flex;
             flex-direction: column;
             align-items: center;
             z-index: 3;
-            line-height: 1;
             color: #2b2214;
+            line-height: 1;
         }
 
         .overall {
-            font-size: 42px;
+            font-size: 38px;
             font-weight: 700;
             line-height: 1;
         }
 
         .position {
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 600;
             letter-spacing: 1px;
-            margin-top: 2px;
+            margin-top: 1px;
         }
 
         .flag {
-            width: 26px;
-            height: 16px;
+            width: 24px;
+            height: 15px;
             object-fit: cover;
             border-radius: 2px;
             margin-top: 4px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
-        /* ---- FOTO DO JOGADOR (centro/direita, área superior) ---- */
+        /* ---- FOTO: área central superior, à direita da coluna esq ----
+           Ocupa do topo até ~57% da altura (acima da linha divisória)    */
         .card-image {
             position: absolute;
-            top: 10px;
-            left: 50px;
-            /* deixa espaço para coluna esquerda */
-            right: 0;
-            height: 170px;
+            top: 4%;
+            left: 28%;
+            right: 4%;
+            height: 52%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
             z-index: 2;
+            overflow: hidden;
         }
 
-        .card-image img {
+        .card-image img,
+        .card-image svg {
             max-height: 100%;
             max-width: 100%;
             object-fit: contain;
+            display: block;
         }
 
-        /* ---- NOME (centralizado, logo abaixo da foto) ---- */
+        /* ---- NOME: centralizado, logo acima da linha divisória (~58%) ---- */
         .card-name {
             position: absolute;
-            top: 182px;
+            top: 57%;
             width: 100%;
             text-align: center;
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: #2b2214;
             z-index: 3;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 0 8px;
         }
 
-        /* ---- DIVISOR fino abaixo do nome ---- */
-        .card-divider {
-            position: absolute;
-            top: 208px;
-            left: 10%;
-            width: 80%;
-            height: 1px;
-            background: rgba(43, 34, 20, 0.3);
-            z-index: 3;
-        }
-
-        /* ---- ATRIBUTOS (duas colunas, parte inferior) ---- */
+        /* ---- ATRIBUTOS: abaixo da linha divisória (~67%) ---- */
         .card-stats {
             position: absolute;
-            top: 216px;
-            width: 86%;
-            left: 7%;
+            top: 67%;
+            width: 82%;
+            left: 9%;
             display: flex;
             justify-content: space-between;
             z-index: 3;
@@ -170,34 +168,22 @@
         .stat-row {
             display: flex;
             align-items: center;
-            gap: 5px;
-            font-size: 15px;
+            gap: 4px;
+            font-size: 14px;
             color: #2b2214;
+            line-height: 1.15;
         }
 
         .stat-value {
             font-weight: 700;
-            width: 22px;
+            width: 20px;
             text-align: right;
         }
 
         .stat-label {
             font-weight: 400;
-            font-size: 13px;
-        }
-
-        /* ---- RODAPÉ "FUT CARDS" ---- */
-        .card-footer {
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
-            text-align: center;
-            font-size: 9px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            color: rgba(43, 34, 20, 0.5);
-            text-transform: uppercase;
-            z-index: 3;
+            font-size: 11px;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -205,34 +191,49 @@
 <body>
 
     <h1>Votação Jogo Coop - CS2</h1>
-
     <div class="cards-container" id="time-amigos"></div>
 
     <script>
+        const SILHUETA = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 155" width="100" height="130">
+            <defs>
+                <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="rgba(43,34,20,0.30)"/>
+                    <stop offset="100%" stop-color="rgba(43,34,20,0.10)"/>
+                </linearGradient>
+            </defs>
+            <ellipse cx="60" cy="36" rx="21" ry="23" fill="url(#sg)"/>
+            <rect x="52" y="55" width="16" height="13" rx="4" fill="url(#sg)"/>
+            <path d="M14 155 Q14 98 38 86 Q50 81 60 81 Q70 81 82 86 Q106 98 106 155Z" fill="url(#sg)"/>
+        </svg>`;
+
         const jogadores = [
-            { nome: "Negaolol", posicao: "ENT", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 88, mov: 85, noc: 92, uti: 89, imp: 86, clu: 90 } },
-            { nome: "Alisson", posicao: "AWP", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 90, mov: 82, noc: 85, uti: 80, imp: 91, clu: 87 } },
-            { nome: "Kaue", posicao: "ENT", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 92, mov: 88, noc: 80, uti: 75, imp: 90, clu: 78 } },
-            { nome: "Mathias", posicao: "SUP", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
-            { nome: "Osvaldo", posicao: "SUP", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 55, mov: 50, noc: 52, uti: 58, imp: 50, clu: 55 } },
-            { nome: "Indianolol", posicao: "SUP", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
-            { nome: "Modafoquin", posicao: "SUP", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
-            { nome: "GGelo", posicao: "SUP", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
-            { nome: "Wandher", posicao: "SUP", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
-            { nome: "Psicologo", posicao: "SUP", foto: "https://i.imgur.com/r84NksO.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } }
+            { nome: "Negaolol", posicao: "ENT", foto: null, stats: { mir: 88, mov: 85, noc: 92, uti: 89, imp: 86, clu: 90 } },
+            { nome: "Alisson", posicao: "AWP", foto: null, stats: { mir: 90, mov: 82, noc: 85, uti: 80, imp: 91, clu: 87 } },
+            { nome: "Kaue", posicao: "ENT", foto: null, stats: { mir: 92, mov: 88, noc: 80, uti: 75, imp: 90, clu: 78 } },
+            { nome: "Mathias", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
+            { nome: "Osvaldo", posicao: "SUP", foto: null, stats: { mir: 55, mov: 50, noc: 52, uti: 58, imp: 50, clu: 55 } },
+            { nome: "Indianolol", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
+            { nome: "Modafoquin", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
+            { nome: "GGelo", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
+            { nome: "Wandher", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } },
+            { nome: "Psicologo", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, clu: 70 } }
         ];
 
+        const bgMap = { ouro: 'ouro.jpg', prata: 'prata.jpg', bronze: 'bronze.jpg' };
         const container = document.getElementById('time-amigos');
 
         jogadores.forEach(jogador => {
             const st = jogador.stats;
-            const soma = st.mir + st.mov + st.noc + st.uti + st.imp + st.clu;
-            const overall = Math.round(soma / 6);
+            const overall = Math.round((st.mir + st.mov + st.noc + st.uti + st.imp + st.clu) / 6);
+            const categoria = overall >= 80 ? "ouro" : overall >= 60 ? "prata" : "bronze";
 
-            let categoria = overall >= 80 ? "ouro" : overall >= 60 ? "prata" : "bronze";
+            const fotoHTML = jogador.foto
+                ? `<img src="${jogador.foto}" alt="${jogador.nome}" onerror="this.style.display='none'">`
+                : SILHUETA;
 
-            const cartaHTML = `
-                <div class="cs-card ${categoria}">
+            container.innerHTML += `
+                <div class="cs-card">
+                    <img class="card-bg" src="${bgMap[categoria]}" alt="">
 
                     <div class="card-top-left">
                         <div class="overall">${overall}</div>
@@ -240,12 +241,9 @@
                         <img class="flag" src="https://flagcdn.com/w40/br.png" alt="Brasil">
                     </div>
 
-                    <div class="card-image">
-                        <img src="${jogador.foto}" alt="Foto de ${jogador.nome}">
-                    </div>
+                    <div class="card-image">${fotoHTML}</div>
 
                     <div class="card-name">${jogador.nome}</div>
-                    <div class="card-divider"></div>
 
                     <div class="card-stats">
                         <div class="stat-column">
@@ -259,12 +257,7 @@
                             <div class="stat-row"><span class="stat-value">${st.clu}</span><span class="stat-label">CLU</span></div>
                         </div>
                     </div>
-
-                    <div class="card-footer">CS Cards</div>
-                </div>
-            `;
-
-            container.innerHTML += cartaHTML;
+                </div>`;
         });
     </script>
 </body>
