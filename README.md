@@ -19,17 +19,16 @@ Cada jogador tem seus atributos, time favorito e um overall calculado automatica
 
 Cada carta exibe:
 
-| Campo         | Descrição                                                                              |
-| ------------- | -------------------------------------------------------------------------------------- |
-| **Overall**   | Média automática dos 6 atributos                                                       |
-| **Posição**   | ENT (Entry-fragger), AWP, SUP (Suporte), ANC(Ancora), IGL(In-Game Leader), LRK(Lurker) |
-| **Foto**      | Foto do player (ou silhueta se não tiver)                                              |
-| **Nome**      | Com efeito deslizante em nomes longos                                                  |
-| **Atributos** | MIR · MOV · NOC · UTI · IMP · AURA                                                     |
-| **Time**      | Logo do time favorito do player                                                        |
+| Campo | Descrição |
+|-------|-----------|
+| **Overall** | Média automática dos 6 atributos |
+| **Posição** | ENT (Entrada), AWP, SUP (Suporte) |
+| **Foto** | Foto do player (ou silhueta se não tiver) |
+| **Nome** | Com efeito deslizante em nomes longos |
+| **Atributos** | MIR · MOV · NOC · UTI · IMP · AURA |
+| **Time** | Logo do time favorito do player |
 
 **Classificação de carta por overall:**
-
 - 🥇 **Ouro** — 80 ou mais
 - 🥈 **Prata** — 60 a 79
 - 🥉 **Bronze** — abaixo de 60
@@ -109,5 +108,5 @@ Basta abrir o arquivo `index.html` no navegador. Não precisa de servidor, frame
 ---
 
 <div align="center">
-  Feito com 💛 para o grupo Votação Jogo Coop
+  Feito com 💛 pelo grupo Votação Jogo Coop
 </div>
