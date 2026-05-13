@@ -37,25 +37,6 @@
             margin: 0 auto;
         }
 
-        /*
-         * Template 422x591px — zonas mapeadas por pixel:
-         *
-         *  Barrinha 1 (topo overall) : y=182px = 30.8%
-         *  Barrinha 2 (base posição) : y=232px = 39.3%
-         *  Bandeira                  : entre barrinha2 e a listra (~42%)
-         *  Grande listra             : y=148-304px (25-51%)
-         *  Linha horiz. divisória    : y=361px = 61.1%
-         *  Nome                      : logo acima de y=361 → ~57-60%
-         *  Stats início              : y~400px = 67.7%
-         *  Linha vertical stats      : x=195px = 46.2%
-         *  Borda esq. da carta       : x=49px  = 11.6%
-         *
-         *  Overall fica ACIMA da barrinha1 → top ~11%, logo abaixo do topo da carta
-         *  Posição fica ENTRE as barrinhas → top ~31%
-         *  Bandeira fica ABAIXO da barrinha2 → top ~40%
-         *
-         * Exibindo em 253x355px (60% do original)
-         */
         .cs-card {
             width: 253px;
             height: 355px;
@@ -76,67 +57,66 @@
             width: 100%;
             height: 100%;
             object-fit: fill;
-            display: block;
             z-index: 0;
         }
 
-        /* Overall: acima da barrinha1 (y=30.8%)
-           Fica em top≈11% para o número ficar entre o topo e a barrinha */
+        /* OVERALL: Aumentado para 50px e centralizado na própria coluna */
         .card-overall {
             position: absolute;
-            top: 10%;
-            left: 11.6%;
-            width: 19%;
+            top: 14%;
+            /* Desce perfeitamente para encostar na 1ª linha */
+            left: 10%;
+            width: 22%;
             text-align: center;
-            font-size: 42px;
+            font-size: 50px;
             font-weight: 700;
-            line-height: 1;
+            line-height: 0.8;
             color: #2b2214;
             z-index: 3;
         }
 
-        /* Posição: entre barrinha1 (30.8%) e barrinha2 (39.3%)
-           Centro das barrinhas ≈ 35% */
+        /* POSIÇÃO: Encostado na 2ª linha */
         .card-position {
             position: absolute;
-            top: 31.5%;
-            left: 11.6%;
-            width: 19%;
+            top: 33%;
+            left: 10%;
+            width: 22%;
             text-align: center;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.8px;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
             color: #2b2214;
             z-index: 3;
             line-height: 1;
         }
 
-        /* Bandeira: abaixo da barrinha2 (39.3%) */
+        /* BANDEIRA: Centralizada abaixo da posição */
         .card-flag {
             position: absolute;
-            top: 40.5%;
-            left: 11.6%;
-            width: 19%;
+            top: 41.5%;
+            left: 10%;
+            width: 22%;
             display: flex;
             justify-content: center;
             z-index: 3;
         }
 
         .card-flag img {
-            width: 26px;
-            height: 16px;
+            width: 28px;
+            /* Bandeira um pouco mais larguinha */
+            height: 18px;
             object-fit: cover;
             border-radius: 2px;
         }
 
-        /* Foto: direita do bloco overall, até a linha divisória
-           left≈32%, top≈7%, right≈3%, height≈53% */
+        /* FOTO: Base cravada na linha divisória horizontal */
         .card-image {
             position: absolute;
-            top: 7%;
+            top: 10%;
+            bottom: 39.5%;
+            /* Força a imagem a não passar da linha divisória */
             left: 32%;
-            right: 3%;
-            height: 53%;
+            right: 5%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -152,18 +132,17 @@
             display: block;
         }
 
-        /* Nome: logo acima da linha divisória (y=61.1%)
-           Posicionado em ~57% para ficar visível acima da listra */
+        /* NOME: Maior e repousando exatamente em cima da linha */
         .card-name {
             position: absolute;
-            top: 57%;
-            left: 11.6%;
-            right: 3%;
+            top: 58.5%;
+            left: 5%;
+            right: 5%;
             text-align: center;
-            font-size: 21px;
+            font-size: 24px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             color: #2b2214;
             z-index: 3;
             white-space: nowrap;
@@ -172,47 +151,52 @@
             line-height: 1.15;
         }
 
-        /* Stats — coluna esquerda: left=11.6%, top=67.7%
-           Coluna direita: left=46.2%, top=67.7% */
+        /* STATS: Ajuste de alinhamento esquerdo e direito da linha vertical */
         .stat-col-left {
             position: absolute;
-            top: 67%;
-            left: 11.6%;
+            top: 66.5%;
+            left: 16%;
+            /* Move levemente para a direita para alinhar com o topo */
             display: flex;
             flex-direction: column;
-            gap: 1px;
+            gap: 3px;
             z-index: 3;
         }
 
         .stat-col-right {
             position: absolute;
-            top: 67%;
-            left: 48%;
+            top: 66.5%;
+            left: 53%;
+            /* Espaço simétrico em relação à linha do meio */
             display: flex;
             flex-direction: column;
-            gap: 1px;
+            gap: 3px;
             z-index: 3;
         }
 
         .stat-row {
             display: flex;
             align-items: center;
-            gap: 4px;
-            font-size: 15px;
-            color: #2b2214;
-            line-height: 1.25;
+            gap: 6px;
+            /* Mais respiro entre o número e a letra */
+            line-height: 1.1;
         }
 
         .stat-value {
             font-weight: 700;
-            width: 20px;
+            font-size: 20px;
+            /* Números maiores, padrão FIFA */
+            width: 22px;
             text-align: right;
+            color: #2b2214;
         }
 
         .stat-label {
-            font-weight: 400;
-            font-size: 11px;
+            font-weight: 600;
+            font-size: 15px;
+            /* Letras levemente menores que o número */
             letter-spacing: 0.5px;
+            color: #2b2214;
         }
     </style>
 </head>
