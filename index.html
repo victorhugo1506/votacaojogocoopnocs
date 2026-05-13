@@ -6,12 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cartas CS - O Esquadrão</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
             background-color: #1a1a24;
-            margin: 0;
-            padding: 50px;
+            padding: 50px 20px;
             font-family: Arial, sans-serif;
             color: white;
         }
@@ -34,33 +39,25 @@
             margin: 0 auto;
         }
 
-        /* -------------------------------------
-           DESIGN DA CARTA (ESTILO FIFA)
-           ------------------------------------- */
+        /* ---- CARTA BASE ---- */
         .cs-card {
-            width: 320px;
-            height: 450px;
-            /* Altura ajustada para o formato FIFA */
-            background-color: transparent;
+            width: 220px;
+            height: 320px;
             background-size: cover;
             background-position: center;
             position: relative;
-            /* Essencial para alinhar os elementos dentro dela */
-            border-radius: 25px;
-            /* Corta as pontas pretas do template JPG */
+            border-radius: 12px;
             overflow: hidden;
-            color: #2b2214;
-            /* Cor escura idêntica à das cartas reais */
             font-family: 'Teko', sans-serif;
             transition: transform 0.2s;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            cursor: default;
         }
 
         .cs-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px) scale(1.02);
         }
 
-        /* Classes de Fundo */
         .ouro {
             background-image: url('ouro.jpg');
         }
@@ -73,50 +70,53 @@
             background-image: url('bronze.jpg');
         }
 
-        /* 1. Coluna Superior Esquerda (Nota, Posição e Bandeira) */
+        /* ---- COLUNA SUPERIOR ESQUERDA: overall, posição, bandeira ---- */
         .card-top-left {
             position: absolute;
-            top: 55px;
-            left: 45px;
+            top: 18px;
+            left: 14px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            z-index: 2;
+            z-index: 3;
+            line-height: 1;
+            color: #2b2214;
         }
 
         .overall {
-            font-size: 60px;
-            font-weight: 600;
-            line-height: 0.8;
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1;
         }
 
         .position {
-            font-size: 20px;
+            font-size: 14px;
             font-weight: 600;
-            margin-top: 5px;
-            margin-bottom: 5px;
             letter-spacing: 1px;
+            margin-top: 2px;
         }
 
         .flag {
-            width: 32px;
-            height: 20px;
+            width: 26px;
+            height: 16px;
             object-fit: cover;
             border-radius: 2px;
+            margin-top: 4px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
-        /* 2. Foto do Jogador */
+        /* ---- FOTO DO JOGADOR (centro/direita, área superior) ---- */
         .card-image {
             position: absolute;
-            top: 40px;
-            right: 15px;
-            width: 200px;
-            height: 190px;
+            top: 10px;
+            left: 50px;
+            /* deixa espaço para coluna esquerda */
+            right: 0;
+            height: 170px;
             display: flex;
-            justify-content: center;
             align-items: flex-end;
-            z-index: 1;
+            justify-content: center;
+            z-index: 2;
         }
 
         .card-image img {
@@ -125,53 +125,79 @@
             object-fit: contain;
         }
 
-        /* 3. Nome do Jogador (Acima da linha divisória) */
+        /* ---- NOME (centralizado, logo abaixo da foto) ---- */
         .card-name {
             position: absolute;
-            top: 235px;
-            /* Altura exata para bater com a linha do template */
+            top: 182px;
             width: 100%;
             text-align: center;
-            font-size: 28px;
+            font-size: 20px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
+            letter-spacing: 1.5px;
+            color: #2b2214;
+            z-index: 3;
         }
 
-        /* 4. Atributos (Divididos pela linha vertical) */
+        /* ---- DIVISOR fino abaixo do nome ---- */
+        .card-divider {
+            position: absolute;
+            top: 208px;
+            left: 10%;
+            width: 80%;
+            height: 1px;
+            background: rgba(43, 34, 20, 0.3);
+            z-index: 3;
+        }
+
+        /* ---- ATRIBUTOS (duas colunas, parte inferior) ---- */
         .card-stats {
             position: absolute;
-            top: 290px;
-            /* Altura exata para bater com a linha vertical do template */
-            width: 80%;
-            left: 10%;
+            top: 216px;
+            width: 86%;
+            left: 7%;
             display: flex;
-            justify-content: center;
-            gap: 40px;
-            /* Espaçamento entre a coluna da esquerda e direita */
+            justify-content: space-between;
+            z-index: 3;
         }
 
         .stat-column {
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 1px;
         }
 
         .stat-row {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 22px;
+            gap: 5px;
+            font-size: 15px;
+            color: #2b2214;
         }
 
         .stat-value {
-            font-weight: 600;
-            width: 25px;
+            font-weight: 700;
+            width: 22px;
             text-align: right;
         }
 
         .stat-label {
-            font-weight: normal;
+            font-weight: 400;
+            font-size: 13px;
+        }
+
+        /* ---- RODAPÉ "FUT CARDS" ---- */
+        .card-footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: rgba(43, 34, 20, 0.5);
+            text-transform: uppercase;
+            z-index: 3;
         }
     </style>
 </head>
@@ -203,30 +229,24 @@
             const soma = st.mir + st.mov + st.noc + st.uti + st.imp + st.clu;
             const overall = Math.round(soma / 6);
 
-            let categoria = "";
-            if (overall >= 80) {
-                categoria = "ouro";
-            } else if (overall >= 60) {
-                categoria = "prata";
-            } else {
-                categoria = "bronze";
-            }
+            let categoria = overall >= 80 ? "ouro" : overall >= 60 ? "prata" : "bronze";
 
-            // O HTML agora reflete a nova organização do CSS
             const cartaHTML = `
                 <div class="cs-card ${categoria}">
+
                     <div class="card-top-left">
                         <div class="overall">${overall}</div>
                         <div class="position">${jogador.posicao}</div>
                         <img class="flag" src="https://flagcdn.com/w40/br.png" alt="Brasil">
                     </div>
-                    
+
                     <div class="card-image">
                         <img src="${jogador.foto}" alt="Foto de ${jogador.nome}">
                     </div>
-                    
+
                     <div class="card-name">${jogador.nome}</div>
-                    
+                    <div class="card-divider"></div>
+
                     <div class="card-stats">
                         <div class="stat-column">
                             <div class="stat-row"><span class="stat-value">${st.mir}</span><span class="stat-label">MIR</span></div>
@@ -239,6 +259,8 @@
                             <div class="stat-row"><span class="stat-value">${st.clu}</span><span class="stat-label">CLU</span></div>
                         </div>
                     </div>
+
+                    <div class="card-footer">CS Cards</div>
                 </div>
             `;
 
