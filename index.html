@@ -129,9 +129,9 @@
             display: block;
         }
 
-        .card-name {
+.card-name {
             position: absolute;
-            top: 57%;
+            top: 57%; 
             left: 5%;
             right: 5%;
             text-align: center;
@@ -145,6 +145,14 @@
             overflow: hidden;
             text-overflow: ellipsis;
             line-height: 1.15;
+
+            /* Cria um contorno branco sólido ao redor da letra preta e um leve brilho */
+            text-shadow: 
+                -1px -1px 0 #fff,  
+                 1px -1px 0 #fff,
+                -1px  1px 0 #fff,
+                 1px  1px 0 #fff,
+                 0px  0px 6px rgba(255, 255, 255, 0.8);
         }
 
         .card-stats-row {
@@ -242,7 +250,7 @@
         const cartaGOAT = {
             nome: "Stalinosvaldo (Recorde)",
             posicao: "SUP",
-            foto: null,
+            foto: "osvaldo.png",
             time: "furia.png",
             stats: { mir: 89, mov: 86, noc: 92, uti: 79, imp: 94, aura: 93 }
         };
