@@ -233,19 +233,19 @@
             <path d="M8 140 Q8 88 30 76 Q41 71 50 71 Q59 71 70 76 Q92 88 92 140Z" fill="url(#sg)"/>
         </svg>`;
 
-        // AQUI ESTÃO OS JOGADORES - Troquei 'clu' por 'aura'
-        const jogadores = [
-            { nome: "Negaolol", posicao: "ENT", foto: null, stats: { mir: 88, mov: 85, noc: 92, uti: 89, imp: 86, aura: 90 } },
-            { nome: "Alisson", posicao: "AWP", foto: null, stats: { mir: 90, mov: 82, noc: 85, uti: 80, imp: 91, aura: 87 } },
-            { nome: "Kaue", posicao: "ENT", foto: null, stats: { mir: 92, mov: 88, noc: 80, uti: 75, imp: 90, aura: 78 } },
-            { nome: "Mathias", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } },
-            { nome: "Osvaldo", posicao: "SUP", foto: null, stats: { mir: 55, mov: 50, noc: 52, uti: 58, imp: 50, aura: 55 } },
-            { nome: "Indianolol", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } },
-            { nome: "Modafoquin", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } },
-            { nome: "GGelo", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } },
-            { nome: "Wandher", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } },
-            { nome: "Psicologo", posicao: "SUP", foto: null, stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } }
-        ];
+    // Adicionamos a chave 'time:' com o nome exato do arquivo PNG que você subiu
+    const jogadores = [
+        { nome: "Negaolol", posicao: "ENT", foto: null, time: "furia.png", stats: { mir: 88, mov: 85, noc: 92, uti: 89, imp: 86, aura: 90 } },
+        { nome: "Alisson", posicao: "AWP", foto: null, time: "navi.png", stats: { mir: 90, mov: 82, noc: 85, uti: 80, imp: 91, aura: 87 } },
+        { nome: "Kaue", posicao: "ENT", foto: null, time: "faze.png", stats: { mir: 92, mov: 88, noc: 80, uti: 75, imp: 90, aura: 78 } },
+        { nome: "Mathias", posicao: "SUP", foto: null, time: "vitality.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } },
+        { nome: "Osvaldo", posicao: "SUP", foto: null, time: "furia.png", stats: { mir: 55, mov: 50, noc: 52, uti: 58, imp: 50, aura: 55 } },
+        { nome: "Indianolol", posicao: "SUP", foto: null, time: "navi.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } },
+        { nome: "Modafoquin", posicao: "SUP", foto: null, time: "faze.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } },
+        { nome: "GGelo", posicao: "SUP", foto: null, time: "vitality.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } },
+        { nome: "Wandher", posicao: "SUP", foto: null, time: "furia.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } },
+        { nome: "Psicologo", posicao: "SUP", foto: null, time: "navi.png", stats: { mir: 70, mov: 70, noc: 70, uti: 70, imp: 70, aura: 70 } }
+    ];
 
         const bgMap = { ouro: 'ouro.jpg', prata: 'prata.jpg', bronze: 'bronze.jpg' };
         const container = document.getElementById('time-amigos');
@@ -284,8 +284,8 @@
                     <!-- RODAPÉ (Bandeira, CS2, Escudo) -->
                     <div class="card-bottom-icons">
                         <img class="flag-icon" src="https://flagcdn.com/w40/br.png" alt="Brasil">
-                        <img class="cs-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Counter-Strike_2_logo.svg/320px-Counter-Strike_2_logo.svg.png" alt="CS2">
-                        <img class="club-icon" src="https://i.imgur.com/gK1qO8a.png" alt="Time">
+                        <img class="cs-logo" src="cs2.png" alt="CS2">
+                        <img class="club-icon" src="${jogador.time}" alt="Time">
                     </div>
                 </div>`;
         });
